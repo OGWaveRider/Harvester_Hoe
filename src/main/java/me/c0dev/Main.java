@@ -62,6 +62,7 @@ public final class Main extends JavaPlugin {
         // Plugin shutdown logic
 
         // Harvester Hoe
+        // Test
         this.data = new DataManager(this);
         data.saveDefaultConfig();
         data.saveConfig();
