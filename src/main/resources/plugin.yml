@@ -1,0 +1,20 @@
+name: Premiumharvesterhoe
+version: '${project.version}'
+main: me.c0dev.Main
+api-version: 1.18
+commands:
+  givePremiumHarvesterHoe:
+    description: Gives the player a harvester hoe
+    usage: /givePremiumHarvesterHoe
+  getUUID:
+    description: Gives the player the UUID of a custom item
+    usage: /getUUID
+  wipeConfig:
+    description: Wipes the Harvester Hoe config
+    usage: /wipeConfig
+  wipeBPConfig:
+    description: Wipes the BP config
+    usage: /wipeBPConfig
+  giveSmallBP:
+    description: Gives a small backpack
+    usage: /giveSmallBP
