@@ -329,7 +329,7 @@ public class OpenBPEvent implements Listener {
         }.runTaskTimer(JavaPlugin.getPlugin(Main.class), 0L, 20L);
     }
 
-    public Information getHarvesterHoe(Player player) {
+    public Information getHarvesterHoe(final Player player) {
         for (ItemStack item : player.getInventory().getContents()) {
             if (item != null) {
                 PersistentDataContainer container = item.getItemMeta().getPersistentDataContainer();
