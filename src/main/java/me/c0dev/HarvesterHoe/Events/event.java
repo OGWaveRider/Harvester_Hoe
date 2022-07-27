@@ -105,12 +105,8 @@ public class event implements Listener {
 
                                 if (m == Material.WHEAT) {
                                     Wheat = Wheat + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat");
-                                    if (data.getConfig().getInt(info.getUuid() + ".amount_mined" + ".wheat") == 0) {
-                                        data.getConfig().set(info.getUuid() + ".amount_mined" + ".wheat", Wheat);
-                                    }
-                                    else {
-                                        data.getConfig().set(info.getUuid() + ".amount_mined" + ".wheat", data.getConfig().getInt(info.getUuid() + ".amount_mined" + ".wheat") + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat"));
-                                    }
+                                    data.getConfig().set(info.getUuid() + ".amount_mined" + ".wheat", data.getConfig().getInt(info.getUuid() + ".amount_mined" + ".wheat") + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat"));
+
                                     data.saveConfig();
                                 }
 
