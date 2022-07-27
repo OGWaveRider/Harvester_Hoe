@@ -11,6 +11,8 @@ import me.c0dev.HarvesterHoe.Commands.wipeConfig;
 import me.c0dev.HarvesterHoe.Events.event;
 import me.c0dev.HarvesterHoe.Files.DataManager;
 import me.c0dev.HarvesterHoe.Item.items;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -33,6 +35,12 @@ public final class Main extends JavaPlugin {
         instance = this;
         items.init();
         SmallBackpack.init();
+
+        Bukkit.getServer().getOnlinePlayers().forEach(player -> {
+            if (player.isOp()) {
+                player.sendMessage(ChatColor.GOLD + "[!] Harvester Hoe is online!");
+            }
+        });
         getServer().getPluginManager().registerEvents(new event(), this);
         getServer().getPluginManager().registerEvents(new OpenBPEvent(), this);
         getCommand("givePremiumHarvesterHoe").setExecutor(new commands());
