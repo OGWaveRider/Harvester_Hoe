@@ -36,8 +36,6 @@ public class OpenBPEvent implements Listener {
     private Inventory gui;
     public BackpackDataManager config;
     public DataManager data;
-    public Information information;
-
     @EventHandler
     public void OnRightClickBlock(PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -90,7 +88,7 @@ public class OpenBPEvent implements Listener {
         Player player = (Player) e.getWhoClicked();
 
         data = new DataManager(JavaPlugin.getPlugin(Main.class));
-        information = getHarvesterHoe(player);
+        Information information = getHarvesterHoe(player);
 
         Player p = (Player) e.getWhoClicked();
         PersistentDataContainer container = p.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer();
