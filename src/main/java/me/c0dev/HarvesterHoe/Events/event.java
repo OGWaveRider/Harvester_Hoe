@@ -142,9 +142,9 @@ public class event implements Listener {
                     for (String cu : compUpgrades) {
                         if (player.getWorld().getBlockAt(block.getX(), block.getY() - 1, block.getZ()).getType().toString().contains(cm.toString())) {
                             if (cm.toString().replaceAll("KELP_PLANT", "KELP").equals(cu.replace(".", "").toUpperCase())) {
-                                block.setType(Material.AIR);
                                 player.getInventory().addItem(new ItemStack(Objects.requireNonNull(Material.getMaterial(cm.toString())), data.getConfig().getInt(info.getUuid() + ".upgrades" + cu)));
                                 if (cm == Material.KELP) {
+                                    block.setType(Material.WATER);
                                     Kelp = Kelp + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp");
                                     if (data.getConfig().getInt(info.getUuid() + ".amount_mined" + ".kelp") == 0) {
                                         data.getConfig().set(info.getUuid() + ".amount_mined" + ".kelp", Kelp);
@@ -154,8 +154,8 @@ public class event implements Listener {
                                     }
                                     data.saveConfig();
                                 }
-
                                 if (cm == Material.KELP_PLANT) {
+                                    block.setType(Material.WATER);
                                     Kelp = Kelp + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp");
                                     if (data.getConfig().getInt(info.getUuid() + ".amount_mined" + ".kelp") == 0) {
                                         data.getConfig().set(info.getUuid() + ".amount_mined" + ".kelp", Kelp);
@@ -165,8 +165,8 @@ public class event implements Listener {
                                     }
                                     data.saveConfig();
                                 }
-
                                 if (cm == Material.SUGAR_CANE) {
+                                    block.setType(Material.AIR);
                                     Sugar_Cane = Sugar_Cane + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane");
                                     if (data.getConfig().getInt(info.getUuid() + ".amount_mined" + ".sugar_cane") == 0) {
                                         data.getConfig().set(info.getUuid() + ".amount_mined" + ".sugar_cane", Sugar_Cane);
@@ -178,6 +178,7 @@ public class event implements Listener {
                                 }
 
                                 if (cm == Material.BAMBOO) {
+                                    block.setType(Material.AIR);
                                     Bamboo = Bamboo + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".bamboo");
                                     if (data.getConfig().getInt(info.getUuid() + ".amount_mined" + ".bamboo") == 0) {
                                         data.getConfig().set(info.getUuid() + ".amount_mined" + ".bamboo", Bamboo);
@@ -278,6 +279,7 @@ public class event implements Listener {
 
     @EventHandler
     public void hoeUpgradeEvent(InventoryClickEvent e) {
+
         if (!e.getInventory().equals(gui)) return;
         e.setCancelled(true);
 
@@ -296,6 +298,7 @@ public class event implements Listener {
         switch (e.getSlot()) {
             case 10: {
                 if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat")) {
+                    //Add a price per upgrades
                     if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".wheat"))
                         lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat");
                     data.getConfig().set(info.getUuid() + ".upgrades" + ".wheat", (lvl + 1));
