@@ -13,11 +13,14 @@ import me.c0dev.HarvesterHoe.Files.DataManager;
 import me.c0dev.HarvesterHoe.Item.items;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
 public final class Main extends JavaPlugin {
+
+    FileConfiguration config1 = getConfig();
 
     public static Plugin instance;
     public BackpackDataManager config;
@@ -48,6 +51,12 @@ public final class Main extends JavaPlugin {
         getCommand("wipeConfig").setExecutor(new wipeConfig());
         getCommand("wipeBPConfig").setExecutor(new WipeConfig());
         getCommand("giveSmallBP").setExecutor(new giveSmallBP());
+
+        // PHH Config
+        this.config1.options().copyDefaults(true);
+        saveConfig();
+        Bukkit.getLogger().info(config1.get("name") + " is my name and my age is :" + config1.getInt("age"));
+
 
         // BP Config
         this.config = new BackpackDataManager(this);

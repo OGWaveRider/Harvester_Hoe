@@ -64,8 +64,8 @@ public class event implements Listener {
                 PersistentDataContainer container = event.getItem().getItemMeta().getPersistentDataContainer();
                 NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "harvester_hoe_uuid");
                 if (container.has(key, new InformationDataType())) {
-                    Player player = event.getPlayer();
-                    player.sendMessage("Opening menu"); // Good for debug, bad for production
+                    //Player player = event.getPlayer();
+                    //player.sendMessage("Opening menu"); // Good for debug, bad for production
                     openNewGui(event.getPlayer());
                 }
             }
@@ -297,8 +297,23 @@ public class event implements Listener {
 
         switch (e.getSlot()) {
             case 10: {
-                if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat")) {
-                    //Add a price per upgrades
+                if (p.getInventory().contains(Material.WHEAT,5)){
+                    p.getInventory().removeItem(new ItemStack(Material.WHEAT, 5));
+
+                    if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat")) {
+
+                        if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".wheat"))
+                            lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat");
+                        data.getConfig().set(info.getUuid() + ".upgrades" + ".wheat", (lvl + 1));
+                        data.saveConfig();
+                        lore.set(3, "§eWheat Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat"));
+                        meta.setLore(lore);
+                        item.setItemMeta(meta);
+                        p.openInventory(gui);
+                        updateInventory(p);
+                        break;
+                    }
+
                     if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".wheat"))
                         lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat");
                     data.getConfig().set(info.getUuid() + ".upgrades" + ".wheat", (lvl + 1));
