@@ -301,9 +301,7 @@ public class event implements Listener {
                 p.sendMessage(String.valueOf(lvl));
                 if (p.getInventory().contains(Material.WHEAT,plugin.getConfig().getInt("wheat" + "." + lvl))){
                     p.getInventory().removeItem(new ItemStack(Material.WHEAT,plugin.getConfig().getInt("wheat" + "." + lvl)));
-
                     if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat")) {
-
                         if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".wheat"))
                             lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat");
                         data.getConfig().set(info.getUuid() + ".upgrades" + ".wheat", (lvl + 1));
@@ -315,107 +313,126 @@ public class event implements Listener {
                         updateInventory(p);
                         break;
                     }
-
-                    if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".wheat"))
-                        lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat");
-                    data.getConfig().set(info.getUuid() + ".upgrades" + ".wheat", (lvl + 1));
-                    data.saveConfig();
-                    lore.set(3, "§eWheat Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat"));
-                    meta.setLore(lore);
-                    item.setItemMeta(meta);
-                    p.openInventory(gui);
-                    updateInventory(p);
-                    break;
                 }
                 return;
             }
             case 12: {
-                if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".beetroot")) {
-                    if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".beetroot"))
-                        lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".beetroot");
-                    data.getConfig().set(info.getUuid() + ".upgrades" + ".beetroot", (lvl + 1));
-                    data.saveConfig();
-                    lore.set(4, "§cBeetroot Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".beetroot")); // 4
-                    meta.setLore(lore);
-                    item.setItemMeta(meta);
-                    p.openInventory(gui);
-                    updateInventory(p);
-                    break;
+                lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".beetroot");
+                p.sendMessage(String.valueOf(lvl));
+                if (p.getInventory().contains(Material.BEETROOT,plugin.getConfig().getInt("beetroot" + "." + lvl))){
+                    p.getInventory().removeItem(new ItemStack(Material.BEETROOT,plugin.getConfig().getInt("beetroot" + "." + lvl)));
+                    if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".beetroot")) {
+                        if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".beetroot"))
+                            lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".beetroot");
+                        data.getConfig().set(info.getUuid() + ".upgrades" + ".beetroot", (lvl + 1));
+                        data.saveConfig();
+                        lore.set(4, "§eBeetRoot Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".beetroot"));
+                        meta.setLore(lore);
+                        item.setItemMeta(meta);
+                        p.openInventory(gui);
+                        updateInventory(p);
+                        break;
+                    }
                 }
                 return;
             }
             case 14: {
-                if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".carrots")) {
-                    if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".carrots"))
-                        lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".carrots");
-                    data.getConfig().set(info.getUuid() + ".upgrades" + ".carrots", (lvl + 1));
-                    data.saveConfig();
-                    lore.set(5, "§6Carrot Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".carrots")); // 5
-                    meta.setLore(lore);
-                    item.setItemMeta(meta);
-                    p.openInventory(gui);
-                    updateInventory(p);
-                    break;
+                lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".carrots");
+                p.sendMessage(String.valueOf(lvl));
+                if (p.getInventory().contains(Material.CARROT,plugin.getConfig().getInt("carrots" + "." + lvl))){
+                    p.getInventory().removeItem(new ItemStack(Material.CARROT,plugin.getConfig().getInt("carrots" + "." + lvl)));
+                    if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".carrots")) {
+                        if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".carrots"))
+                            lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".carrots");
+                        data.getConfig().set(info.getUuid() + ".upgrades" + ".carrots", (lvl + 1));
+                        data.saveConfig();
+                        lore.set(5, "§eCarrot Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".carrots"));
+                        meta.setLore(lore);
+                        item.setItemMeta(meta);
+                        p.openInventory(gui);
+                        updateInventory(p);
+                        break;
+                    }
                 }
                 return;
             }
             case 16: {
-                if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes")) {
-                    if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".potatoes"))
-                        lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes");
-                    data.getConfig().set(info.getUuid() + ".upgrades" + ".potatoes", (lvl + 1));
-                    data.saveConfig();
-                    lore.set(6, "§ePotato Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes")); // 6
-                    meta.setLore(lore);
-                    item.setItemMeta(meta);
-                    p.openInventory(gui);
-                    updateInventory(p);
-                    break;
+                lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes");
+                p.sendMessage(String.valueOf(lvl));
+                if (p.getInventory().contains(Material.POTATO,plugin.getConfig().getInt("potatoes" + "." + lvl))){
+                    p.getInventory().removeItem(new ItemStack(Material.POTATO,plugin.getConfig().getInt("potatoes" + "." + lvl)));
+                    if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes")) {
+                        if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".potatoes"))
+                            lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes");
+                        data.getConfig().set(info.getUuid() + ".upgrades" + ".potatoes", (lvl + 1));
+                        data.saveConfig();
+                        lore.set(6, "§ePotato Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes"));
+                        meta.setLore(lore);
+                        item.setItemMeta(meta);
+                        p.openInventory(gui);
+                        updateInventory(p);
+                        break;
+                    }
                 }
                 return;
             }
             case 20: {
-                if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp")) {
-                    if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".kelp"))
-                        lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp");
-                    data.getConfig().set(info.getUuid() + ".upgrades" + ".kelp", (lvl + 1));
-                    data.saveConfig();
-                    lore.set(7, "§2Kelp Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp")); // 7
-                    meta.setLore(lore);
-                    item.setItemMeta(meta);
-                    p.openInventory(gui);
-                    updateInventory(p);
-                    break;
+                lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp");
+                p.sendMessage(String.valueOf(lvl));
+                if (p.getInventory().contains(Material.KELP,plugin.getConfig().getInt("kelp" + "." + lvl))){
+                    p.getInventory().removeItem(new ItemStack(Material.KELP,plugin.getConfig().getInt("kelp" + "." + lvl)));
+                    if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp")) {
+                        if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".kelp"))
+                            lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp");
+                        data.getConfig().set(info.getUuid() + ".upgrades" + ".kelp", (lvl + 1));
+                        data.saveConfig();
+                        lore.set(7, "§eKelp Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp"));
+                        meta.setLore(lore);
+                        item.setItemMeta(meta);
+                        p.openInventory(gui);
+                        updateInventory(p);
+                        break;
+                    }
                 }
                 return;
             }
             case 22: {
-                if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".bamboo")) {
-                    if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".bamboo"))
-                        lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".bamboo");
-                    data.getConfig().set(info.getUuid() + ".upgrades" + ".bamboo", (lvl + 1));
-                    data.saveConfig();
-                    lore.set(8, "§aBamboo Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".bamboo")); // 8
-                    meta.setLore(lore);
-                    item.setItemMeta(meta);
-                    p.openInventory(gui);
-                    updateInventory(p);
-                    break;
+                lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".bamboo");
+                p.sendMessage(String.valueOf(lvl));
+                if (p.getInventory().contains(Material.BAMBOO,plugin.getConfig().getInt("bamboo" + "." + lvl))){
+                    p.getInventory().removeItem(new ItemStack(Material.BAMBOO,plugin.getConfig().getInt("bamboo" + "." + lvl)));
+                    if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".bamboo")) {
+                        if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".bamboo"))
+                            lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".bamboo");
+                        data.getConfig().set(info.getUuid() + ".upgrades" + ".bamboo", (lvl + 1));
+                        data.saveConfig();
+                        lore.set(8, "§eBamboo Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".bamboo"));
+                        meta.setLore(lore);
+                        item.setItemMeta(meta);
+                        p.openInventory(gui);
+                        updateInventory(p);
+                        break;
+                    }
                 }
                 return;
             }
             case 24: {
-                if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane")) {
-                    if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".sugar_cane"))
-                        lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane");
-                    data.getConfig().set(info.getUuid() + ".upgrades" + ".sugar_cane", (lvl + 1));
-                    data.saveConfig();
-                    lore.set(9, "§2SugarCane Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane")); // 9
-                    meta.setLore(lore);
-                    item.setItemMeta(meta);
-                    p.openInventory(gui);
-                    updateInventory(p);
-                    break;
+                lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane");
+                p.sendMessage(String.valueOf(lvl));
+                if (p.getInventory().contains(Material.SUGAR_CANE,plugin.getConfig().getInt("sugar_cane" + "." + lvl))){
+                    p.getInventory().removeItem(new ItemStack(Material.SUGAR_CANE,plugin.getConfig().getInt("sugar_cane" + "." + lvl)));
+                    if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane")) {
+                        if (data.getConfig().contains(info.getUuid() + ".upgrades" + ".sugar_cane"))
+                            lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane");
+                        data.getConfig().set(info.getUuid() + ".upgrades" + ".sugar_cane", (lvl + 1));
+                        data.saveConfig();
+                        lore.set(9, "§eBamboo Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane"));
+                        meta.setLore(lore);
+                        item.setItemMeta(meta);
+                        p.openInventory(gui);
+                        updateInventory(p);
+                        break;
+                    }
                 }
             }
         }
