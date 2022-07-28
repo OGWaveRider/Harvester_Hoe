@@ -17,10 +17,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 
 public final class Main extends JavaPlugin {
 
-    FileConfiguration config1 = getConfig();
+
+    public FileConfiguration config1 = this.getConfig();
 
     public static Plugin instance;
     public BackpackDataManager config;

@@ -10,7 +10,6 @@ import me.c0dev.Backpacks.PersistentData.BackPackInformationDataType;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -30,7 +30,6 @@ import java.util.*;
 
 public class event implements Listener {
     private static Inventory gui;
-
     public static DataManager data;
     public static BackpackDataManager config;
 
@@ -42,6 +41,7 @@ public class event implements Listener {
     public static int Kelp = 0;
     public static int Beetroot = 0;
 
+    Plugin plugin = Main.getPlugin(Main.class);
     @EventHandler
     public void onRightClickBlock(PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -297,8 +297,9 @@ public class event implements Listener {
 
         switch (e.getSlot()) {
             case 10: {
-                if (p.getInventory().contains(Material.WHEAT,5)){
-                    p.getInventory().removeItem(new ItemStack(Material.WHEAT, 5));
+                if (p.getInventory().contains(Material.WHEAT,plugin.getConfig().getInt("wheat" + ".1"))){
+                    p.getInventory().removeItem(new ItemStack(Material.WHEAT,plugin.getConfig().getInt("wheat" + ".1")));
+                    //p.sendMessage(plugin.getConfig().getInt("WHEAT-1") + " is my name and my age is :" + plugin.getConfig().getInt("age"));
 
                     if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat")) {
 
