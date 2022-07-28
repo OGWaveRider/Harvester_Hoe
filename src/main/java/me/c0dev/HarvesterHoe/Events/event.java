@@ -297,9 +297,10 @@ public class event implements Listener {
 
         switch (e.getSlot()) {
             case 10: {
-                if (p.getInventory().contains(Material.WHEAT,plugin.getConfig().getInt("wheat" + ".1"))){
-                    p.getInventory().removeItem(new ItemStack(Material.WHEAT,plugin.getConfig().getInt("wheat" + ".1")));
-                    //p.sendMessage(plugin.getConfig().getInt("WHEAT-1") + " is my name and my age is :" + plugin.getConfig().getInt("age"));
+                lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat");
+                p.sendMessage(String.valueOf(lvl));
+                if (p.getInventory().contains(Material.WHEAT,plugin.getConfig().getInt("wheat" + "." + lvl))){
+                    p.getInventory().removeItem(new ItemStack(Material.WHEAT,plugin.getConfig().getInt("wheat" + "." + lvl)));
 
                     if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat")) {
 
