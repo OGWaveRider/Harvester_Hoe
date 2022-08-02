@@ -44,7 +44,6 @@ public class OpenBPEvent implements Listener {
                 NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "small_backpack");
                 if (container.has(key, new BackPackInformationDataType())) {
                     Player player = event.getPlayer();
-                    player.sendMessage("Opening menu");
                     openNewGUI(player);
                 }
             }
@@ -58,7 +57,6 @@ public class OpenBPEvent implements Listener {
                 NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "small_backpack");
                 if (container.has(key, new BackPackInformationDataType())) {
                     Player player = event.getPlayer();
-                    player.sendMessage("Opening menu"); // Good for debug, bad for production
                     openNewGUI(player);
                 }
             }
@@ -116,7 +114,6 @@ public class OpenBPEvent implements Listener {
                 }
                 break;
             }
-            //Added BeetRoot to the backpack - withdraw option
             case 2: {
                 int amount = config.getConfig().getInt(info.getUuid() + ".beetroot" + ".amount");
                 int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".beetroot");
@@ -138,8 +135,6 @@ public class OpenBPEvent implements Listener {
                 }
                 break;
             }
-            //Added Carrots to the backpack - withdraw option
-
             case 3: {
                 int amount = config.getConfig().getInt(info.getUuid() + ".carrots" + ".amount");
                 int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".carrots");
@@ -161,7 +156,6 @@ public class OpenBPEvent implements Listener {
                 }
                 break;
             }
-            //Added Potatoes to the backpack - withdraw option
             case 4: {
                 int amount = config.getConfig().getInt(info.getUuid() + ".potatoes" + ".amount");
                 int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".potatoes");
@@ -183,7 +177,6 @@ public class OpenBPEvent implements Listener {
                 }
                 break;
             }
-            //Added Kelp to the backpack - withdraw option
             case 5: {
                 int amount = config.getConfig().getInt(info.getUuid() + ".kelp" + ".amount");
                 int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".kelp");
@@ -205,7 +198,6 @@ public class OpenBPEvent implements Listener {
                 }
                 break;
             }
-            //Added Kelp to the backpack - withdraw option
             case 6: {
                 int amount = config.getConfig().getInt(info.getUuid() + ".bamboo" + ".amount");
                 int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".bamboo");
@@ -227,7 +219,6 @@ public class OpenBPEvent implements Listener {
                 }
                 break;
             }
-            //Added SugarCane to the backpack - withdraw option
             case 7: {
                 int amount = config.getConfig().getInt(info.getUuid() + ".sugar_cane" + ".amount");
                 int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".sugar_cane");
@@ -250,7 +241,6 @@ public class OpenBPEvent implements Listener {
                 break;
             }
             case 99: {
-                // Copy/paste change to next item in config :)
                 //int amount = config.getConfig().getInt(info.getUuid() + ".wheat" + ".amount");
                 data.saveConfig();
                 config.saveConfig();

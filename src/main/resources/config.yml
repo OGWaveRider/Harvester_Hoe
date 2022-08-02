@@ -3,12 +3,12 @@ wheat:
   2: 20
   3: 30
   4: 40
-carrot:
+carrots:
   1: 10
   2: 20
   3: 30
   4: 40
-potato:
+potatoes:
   1: 10
   2: 20
   3: 30
@@ -23,7 +23,7 @@ bamboo:
   2: 20
   3: 30
   4: 40
-sugarcane:
+sugar_cane:
   1: 10
   2: 20
   3: 30

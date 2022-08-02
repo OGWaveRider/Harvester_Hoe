@@ -364,7 +364,7 @@ public class event implements Listener {
                             lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes");
                         data.getConfig().set(info.getUuid() + ".upgrades" + ".potatoes", (lvl + 1));
                         data.saveConfig();
-                        lore.set(6, "§ePotato Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes"));
+                        lore.set(6, "§ePotatoes Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes"));
                         meta.setLore(lore);
                         item.setItemMeta(meta);
                         p.openInventory(gui);
@@ -424,7 +424,7 @@ public class event implements Listener {
                             lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane");
                         data.getConfig().set(info.getUuid() + ".upgrades" + ".sugar_cane", (lvl + 1));
                         data.saveConfig();
-                        lore.set(9, "§eBamboo Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane"));
+                        lore.set(9, "§eSugar Cane Upgrade: LVL " + data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane"));
                         meta.setLore(lore);
                         item.setItemMeta(meta);
                         p.openInventory(gui);
