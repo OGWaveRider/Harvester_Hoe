@@ -50,7 +50,7 @@ public class event implements Listener {
                 NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "harvester_hoe_uuid");
                 if (container.has(key, new InformationDataType())) {
                     Player player = event.getPlayer();
-                    player.sendMessage("Opening menu"); // Good for debug, bad for production
+
                     openNewGui(event.getPlayer());
                 }
             }
@@ -64,8 +64,6 @@ public class event implements Listener {
                 PersistentDataContainer container = event.getItem().getItemMeta().getPersistentDataContainer();
                 NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "harvester_hoe_uuid");
                 if (container.has(key, new InformationDataType())) {
-                    //Player player = event.getPlayer();
-                    //player.sendMessage("Opening menu"); // Good for debug, bad for production
                     openNewGui(event.getPlayer());
                 }
             }
@@ -298,7 +296,7 @@ public class event implements Listener {
         switch (e.getSlot()) {
             case 10: {
                 lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat");
-                p.sendMessage(String.valueOf(lvl));
+                //Place to add a wrong amount items needed for upgrade
                 if (p.getInventory().contains(Material.WHEAT,plugin.getConfig().getInt("wheat" + "." + lvl))){
                     p.getInventory().removeItem(new ItemStack(Material.WHEAT,plugin.getConfig().getInt("wheat" + "." + lvl)));
                     if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".wheat")) {
@@ -318,7 +316,7 @@ public class event implements Listener {
             }
             case 12: {
                 lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".beetroot");
-                p.sendMessage(String.valueOf(lvl));
+                //Place to add a wrong amount items needed for upgrade
                 if (p.getInventory().contains(Material.BEETROOT,plugin.getConfig().getInt("beetroot" + "." + lvl))){
                     p.getInventory().removeItem(new ItemStack(Material.BEETROOT,plugin.getConfig().getInt("beetroot" + "." + lvl)));
                     if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".beetroot")) {
@@ -338,7 +336,7 @@ public class event implements Listener {
             }
             case 14: {
                 lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".carrots");
-                p.sendMessage(String.valueOf(lvl));
+                //Place to add a wrong amount items needed for upgrade
                 if (p.getInventory().contains(Material.CARROT,plugin.getConfig().getInt("carrots" + "." + lvl))){
                     p.getInventory().removeItem(new ItemStack(Material.CARROT,plugin.getConfig().getInt("carrots" + "." + lvl)));
                     if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".carrots")) {
@@ -358,7 +356,7 @@ public class event implements Listener {
             }
             case 16: {
                 lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes");
-                p.sendMessage(String.valueOf(lvl));
+                //Place to add a wrong amount items needed for upgrade
                 if (p.getInventory().contains(Material.POTATO,plugin.getConfig().getInt("potatoes" + "." + lvl))){
                     p.getInventory().removeItem(new ItemStack(Material.POTATO,plugin.getConfig().getInt("potatoes" + "." + lvl)));
                     if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".potatoes")) {
@@ -378,7 +376,7 @@ public class event implements Listener {
             }
             case 20: {
                 lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp");
-                p.sendMessage(String.valueOf(lvl));
+                //Place to add a wrong amount items needed for upgrade
                 if (p.getInventory().contains(Material.KELP,plugin.getConfig().getInt("kelp" + "." + lvl))){
                     p.getInventory().removeItem(new ItemStack(Material.KELP,plugin.getConfig().getInt("kelp" + "." + lvl)));
                     if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".kelp")) {
@@ -398,7 +396,7 @@ public class event implements Listener {
             }
             case 22: {
                 lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".bamboo");
-                p.sendMessage(String.valueOf(lvl));
+                //Place to add a wrong amount items needed for upgrade
                 if (p.getInventory().contains(Material.BAMBOO,plugin.getConfig().getInt("bamboo" + "." + lvl))){
                     p.getInventory().removeItem(new ItemStack(Material.BAMBOO,plugin.getConfig().getInt("bamboo" + "." + lvl)));
                     if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".bamboo")) {
@@ -418,7 +416,7 @@ public class event implements Listener {
             }
             case 24: {
                 lvl = data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane");
-                p.sendMessage(String.valueOf(lvl));
+                //Place to add a wrong amount items needed for upgrade
                 if (p.getInventory().contains(Material.SUGAR_CANE,plugin.getConfig().getInt("sugar_cane" + "." + lvl))){
                     p.getInventory().removeItem(new ItemStack(Material.SUGAR_CANE,plugin.getConfig().getInt("sugar_cane" + "." + lvl)));
                     if (data.getConfig().getInt("max_upgrade_lvl") > data.getConfig().getInt(info.getUuid() + ".upgrades" + ".sugar_cane")) {

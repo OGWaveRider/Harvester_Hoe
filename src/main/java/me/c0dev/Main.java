@@ -17,9 +17,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-
-
 public final class Main extends JavaPlugin {
 
 
@@ -58,7 +55,6 @@ public final class Main extends JavaPlugin {
         // PHH Config
         this.config1.options().copyDefaults(true);
         saveConfig();
-        Bukkit.getLogger().info(config1.get("name") + " is my name and my age is :" + config1.getInt("age"));
 
 
         // BP Config
