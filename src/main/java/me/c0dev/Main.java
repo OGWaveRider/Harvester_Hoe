@@ -71,16 +71,10 @@ public final class Main extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
 
-        // Harvester Hoe
-        // Test
-        this.data = new DataManager(this);
-        data.saveDefaultConfig();
-        data.saveConfig();
-
         // BP Config
-        this.config = new BackpackDataManager(this);
-        config.saveDefaultConfig();
-        config.saveConfig();
+        this.bpConfig = new BackpackDataManager(this);
+        bpConfig.saveDefaultConfig();
+        bpConfig.saveConfig();
     }
     public static Plugin getInstance()
     {
