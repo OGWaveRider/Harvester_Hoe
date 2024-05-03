@@ -1,7 +1,6 @@
 package me.c0dev;
 
-import me.c0dev.Backpacks.Commands.WipeConfig;
-import me.c0dev.Backpacks.Commands.giveSmallBP;
+import me.c0dev.Backpacks.Commands.giveBP;
 import me.c0dev.Backpacks.Events.OpenBPEvent;
 import me.c0dev.Backpacks.Items.Backpack;
 import me.c0dev.HarvesterHoe.Commands.commands;
@@ -39,8 +38,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OpenBPEvent(), this);
         Objects.requireNonNull(getCommand("givePremiumHarvesterHoe")).setExecutor(new commands());
         Objects.requireNonNull(getCommand("getUUID")).setExecutor(new getUUID());
-        Objects.requireNonNull(getCommand("wipeBPConfig")).setExecutor(new WipeConfig());
-        Objects.requireNonNull(getCommand("giveSmallBP")).setExecutor(new giveSmallBP());
+        Objects.requireNonNull(getCommand("giveBP")).setExecutor(new giveBP());
 
         // PHH Config
         this.config.options().copyDefaults(true);

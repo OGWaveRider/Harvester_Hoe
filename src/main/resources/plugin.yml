@@ -9,12 +9,6 @@ commands:
   getUUID:
     description: Gives the player the UUID of a custom item
     usage: /getUUID
-  wipeConfig:
-    description: Wipes the Harvester Hoe config
-    usage: /wipeConfig
-  wipeBPConfig:
-    description: Wipes the BP config
-    usage: /wipeBPConfig
-  giveSmallBP:
-    description: Gives a small backpack
-    usage: /giveSmallBP
+  giveBP:
+    description: Gives a backpack
+    usage: /giveBP <type>

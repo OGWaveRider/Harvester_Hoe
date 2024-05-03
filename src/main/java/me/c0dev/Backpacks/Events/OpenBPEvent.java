@@ -1,6 +1,5 @@
 package me.c0dev.Backpacks.Events;
 
-import me.c0dev.Backpacks.Files.BackpackDataManager;
 import me.c0dev.Backpacks.PersistentData.BackPackInformation;
 import me.c0dev.HarvesterHoe.PersistentData.Information;
 import me.c0dev.HarvesterHoe.PersistentData.InformationDataType;
@@ -33,7 +32,6 @@ import java.util.Objects;
 public class OpenBPEvent implements Listener {
 
     private Inventory gui;
-    public BackpackDataManager config;
     @EventHandler
     public void OnRightClickBlock(PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -93,104 +91,104 @@ public class OpenBPEvent implements Listener {
     }
 
     public void openNewGUI(Player p) {
-        gui = Bukkit.createInventory(null, 9, "Small Backpack");
-        List<String> lore = new ArrayList<>();
-        List<String> lore2 = new ArrayList<>();
-        List<String> lore3 = new ArrayList<>();
-        List<String> lore4 = new ArrayList<>();
-        List<String> lore5 = new ArrayList<>();
-        List<String> lore6 = new ArrayList<>();
-        List<String> lore7 = new ArrayList<>();
+//        gui = Bukkit.createInventory(null, 9, "Small Backpack");
+//        List<String> lore = new ArrayList<>();
+//        List<String> lore2 = new ArrayList<>();
+//        List<String> lore3 = new ArrayList<>();
+//        List<String> lore4 = new ArrayList<>();
+//        List<String> lore5 = new ArrayList<>();
+//        List<String> lore6 = new ArrayList<>();
+//        List<String> lore7 = new ArrayList<>();
 
 
-        config = new BackpackDataManager(JavaPlugin.getPlugin(Main.class));
-        PersistentDataContainer container = p.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer();
-        NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "small_backpack");
-        BackPackInformation info = container.get(key, new BackPackInformationDataType());
+//        config = new BackpackDataManager(JavaPlugin.getPlugin(Main.class));
+//        PersistentDataContainer container = p.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer();
+//        NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "small_backpack");
+//        BackPackInformation info = container.get(key, new BackPackInformationDataType());
+//
+//        ItemStack GrayGlasspane = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
+//        ItemMeta meta = GrayGlasspane.getItemMeta();
+//        assert meta != null;
+//        meta.setDisplayName(ChatColor.GRAY + "");
+//        GrayGlasspane.setItemMeta(meta);
+//
+//        ItemStack Wheat = new ItemStack(Material.WHEAT, 1);
+//        ItemStack Beetroot = new ItemStack(Material.BEETROOT, 1);
+//        ItemStack Carrots = new ItemStack(Material.CARROT, 1);
+//        ItemStack Potatoes = new ItemStack(Material.POTATO, 1);
+//        ItemStack Kelp = new ItemStack(Material.KELP, 1);
+//        ItemStack Bamboo = new ItemStack(Material.BAMBOO);
+//        ItemStack Sugarcane = new ItemStack(Material.SUGAR_CANE, 1);
+//
+//        ItemMeta WheatMeta = Wheat.getItemMeta();
+//        ItemMeta BeetrootMeta = Beetroot.getItemMeta();
+//        ItemMeta CarrotMeta = Carrots.getItemMeta();
+//        ItemMeta PotatoMeta = Potatoes.getItemMeta();
+//        ItemMeta KelpMeta = Kelp.getItemMeta();
+//        ItemMeta BambooMeta = Bamboo.getItemMeta();
+//        ItemMeta SugarcaneMeta = Sugarcane.getItemMeta();
+//
+//        WheatMeta.setDisplayName(ChatColor.YELLOW + "Wheat");
+//        assert info != null;
+//        lore.add("§7" + config.getConfig().getInt(info.getUuid() + ".wheat" + ".amount") + "§7/1024");
+//        lore.add("");
+//        lore.add("§8Left Click to Claim Items");
+//        WheatMeta.setLore(lore);
+//        Wheat.setItemMeta(WheatMeta);
+//
+//        BeetrootMeta.setDisplayName(ChatColor.RED + "Beetroot");
+//        lore2.add("§7" + config.getConfig().getInt(info.getUuid() + ".beetroot" + ".amount") + "§7/1024");
+//        lore2.add("");
+//        lore2.add("§8Left Click to Claim Items");
+//        BeetrootMeta.setLore(lore2);
+//        Beetroot.setItemMeta(BeetrootMeta);
+//
+//        CarrotMeta.setDisplayName(ChatColor.GOLD + "Carrots");
+//        lore3.add("§7" + config.getConfig().getInt(info.getUuid() + ".carrots" + ".amount") + "§7/1024");
+//        lore3.add("");
+//        lore3.add("§8Left Click to Claim Items");
+//        CarrotMeta.setLore(lore3);
+//        Carrots.setItemMeta(CarrotMeta);
+//
+//        PotatoMeta.setDisplayName(ChatColor.YELLOW + "Potatoes");
+//        lore4.add("§7" + config.getConfig().getInt(info.getUuid() + ".potatoes" + ".amount") + "§7/1024");
+//        lore4.add("");
+//        lore4.add("§8Left Click to Claim Items");
+//        PotatoMeta.setLore(lore4);
+//        Potatoes.setItemMeta(PotatoMeta);
+//
+//        KelpMeta.setDisplayName(ChatColor.DARK_GREEN + "Kelp");
+//        lore5.add("§7" + config.getConfig().getInt(info.getUuid() + ".kelp" + ".amount") + "§7/1024");
+//        lore5.add("");
+//        lore5.add("§8Left Click to Claim Items");
+//        KelpMeta.setLore(lore5);
+//        Kelp.setItemMeta(KelpMeta);
+//
+//        BambooMeta.setDisplayName(ChatColor.GREEN + "Bamboo");
+//        lore6.add("§7" + config.getConfig().getInt(info.getUuid() + ".bamboo" + ".amount") + "§7/1024");
+//        lore6.add("");
+//        lore6.add("§8Left Click to Claim Items");
+//        BambooMeta.setLore(lore6);
+//        Bamboo.setItemMeta(BambooMeta);
+//
+//        SugarcaneMeta.setDisplayName(ChatColor.DARK_GREEN + "Sugarcane");
+//        lore7.add("§7" + config.getConfig().getInt(info.getUuid() + ".sugar_cane" + ".amount") + "§7/1024");
+//        lore7.add("");
+//        lore7.add("§8Left Click to Claim Items");
+//        SugarcaneMeta.setLore(lore7);
+//        Sugarcane.setItemMeta(SugarcaneMeta);
+//
+//        gui.setItem(0, GrayGlasspane);
+//        gui.setItem(1, Wheat);
+//        gui.setItem(2, Beetroot);
+//        gui.setItem(3, Carrots);
+//        gui.setItem(4, Potatoes);
+//        gui.setItem(5, Kelp);
+//        gui.setItem(6, Bamboo);
+//        gui.setItem(7, Sugarcane);
+//        gui.setItem(8, GrayGlasspane);
 
-        ItemStack GrayGlasspane = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
-        ItemMeta meta = GrayGlasspane.getItemMeta();
-        assert meta != null;
-        meta.setDisplayName(ChatColor.GRAY + "");
-        GrayGlasspane.setItemMeta(meta);
-
-        ItemStack Wheat = new ItemStack(Material.WHEAT, 1);
-        ItemStack Beetroot = new ItemStack(Material.BEETROOT, 1);
-        ItemStack Carrots = new ItemStack(Material.CARROT, 1);
-        ItemStack Potatoes = new ItemStack(Material.POTATO, 1);
-        ItemStack Kelp = new ItemStack(Material.KELP, 1);
-        ItemStack Bamboo = new ItemStack(Material.BAMBOO);
-        ItemStack Sugarcane = new ItemStack(Material.SUGAR_CANE, 1);
-
-        ItemMeta WheatMeta = Wheat.getItemMeta();
-        ItemMeta BeetrootMeta = Beetroot.getItemMeta();
-        ItemMeta CarrotMeta = Carrots.getItemMeta();
-        ItemMeta PotatoMeta = Potatoes.getItemMeta();
-        ItemMeta KelpMeta = Kelp.getItemMeta();
-        ItemMeta BambooMeta = Bamboo.getItemMeta();
-        ItemMeta SugarcaneMeta = Sugarcane.getItemMeta();
-
-        WheatMeta.setDisplayName(ChatColor.YELLOW + "Wheat");
-        assert info != null;
-        lore.add("§7" + config.getConfig().getInt(info.getUuid() + ".wheat" + ".amount") + "§7/1024");
-        lore.add("");
-        lore.add("§8Left Click to Claim Items");
-        WheatMeta.setLore(lore);
-        Wheat.setItemMeta(WheatMeta);
-
-        BeetrootMeta.setDisplayName(ChatColor.RED + "Beetroot");
-        lore2.add("§7" + config.getConfig().getInt(info.getUuid() + ".beetroot" + ".amount") + "§7/1024");
-        lore2.add("");
-        lore2.add("§8Left Click to Claim Items");
-        BeetrootMeta.setLore(lore2);
-        Beetroot.setItemMeta(BeetrootMeta);
-
-        CarrotMeta.setDisplayName(ChatColor.GOLD + "Carrots");
-        lore3.add("§7" + config.getConfig().getInt(info.getUuid() + ".carrots" + ".amount") + "§7/1024");
-        lore3.add("");
-        lore3.add("§8Left Click to Claim Items");
-        CarrotMeta.setLore(lore3);
-        Carrots.setItemMeta(CarrotMeta);
-
-        PotatoMeta.setDisplayName(ChatColor.YELLOW + "Potatoes");
-        lore4.add("§7" + config.getConfig().getInt(info.getUuid() + ".potatoes" + ".amount") + "§7/1024");
-        lore4.add("");
-        lore4.add("§8Left Click to Claim Items");
-        PotatoMeta.setLore(lore4);
-        Potatoes.setItemMeta(PotatoMeta);
-
-        KelpMeta.setDisplayName(ChatColor.DARK_GREEN + "Kelp");
-        lore5.add("§7" + config.getConfig().getInt(info.getUuid() + ".kelp" + ".amount") + "§7/1024");
-        lore5.add("");
-        lore5.add("§8Left Click to Claim Items");
-        KelpMeta.setLore(lore5);
-        Kelp.setItemMeta(KelpMeta);
-
-        BambooMeta.setDisplayName(ChatColor.GREEN + "Bamboo");
-        lore6.add("§7" + config.getConfig().getInt(info.getUuid() + ".bamboo" + ".amount") + "§7/1024");
-        lore6.add("");
-        lore6.add("§8Left Click to Claim Items");
-        BambooMeta.setLore(lore6);
-        Bamboo.setItemMeta(BambooMeta);
-
-        SugarcaneMeta.setDisplayName(ChatColor.DARK_GREEN + "Sugarcane");
-        lore7.add("§7" + config.getConfig().getInt(info.getUuid() + ".sugar_cane" + ".amount") + "§7/1024");
-        lore7.add("");
-        lore7.add("§8Left Click to Claim Items");
-        SugarcaneMeta.setLore(lore7);
-        Sugarcane.setItemMeta(SugarcaneMeta);
-
-        gui.setItem(0, GrayGlasspane);
-        gui.setItem(1, Wheat);
-        gui.setItem(2, Beetroot);
-        gui.setItem(3, Carrots);
-        gui.setItem(4, Potatoes);
-        gui.setItem(5, Kelp);
-        gui.setItem(6, Bamboo);
-        gui.setItem(7, Sugarcane);
-        gui.setItem(8, GrayGlasspane);
-
-        p.openInventory(gui);
+//        p.openInventory(gui);
     }
 
     private void updateInventory(final Player player) {
@@ -206,93 +204,93 @@ public class OpenBPEvent implements Listener {
                 List<String> lore7 = new ArrayList<>();
 
                 if (player.getInventory().getItemInMainHand().getItemMeta() == null) return;
-                config = new BackpackDataManager(JavaPlugin.getPlugin(Main.class));
-                PersistentDataContainer container = player.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer();
-                NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "small_backpack");
-                BackPackInformation info = container.get(key, new BackPackInformationDataType());
-                if (info == null) return;
-
-                ItemStack GrayGlasspane = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
-                ItemMeta meta = GrayGlasspane.getItemMeta();
-                assert meta != null;
-                meta.setDisplayName(ChatColor.GRAY + "");
-                GrayGlasspane.setItemMeta(meta);
-
-                ItemStack Wheat = new ItemStack(Material.WHEAT, 1);
-                ItemStack Beetroot = new ItemStack(Material.BEETROOT, 1);
-                ItemStack Carrots = new ItemStack(Material.CARROT, 1);
-                ItemStack Potatoes = new ItemStack(Material.POTATO, 1);
-                ItemStack Kelp = new ItemStack(Material.KELP, 1);
-                ItemStack Bamboo = new ItemStack(Material.BAMBOO);
-                ItemStack Sugarcane = new ItemStack(Material.SUGAR_CANE, 1);
-
-                ItemMeta WheatMeta = Wheat.getItemMeta();
-                ItemMeta BeetrootMeta = Beetroot.getItemMeta();
-                ItemMeta CarrotMeta = Carrots.getItemMeta();
-                ItemMeta PotatoMeta = Potatoes.getItemMeta();
-                ItemMeta KelpMeta = Kelp.getItemMeta();
-                ItemMeta BambooMeta = Bamboo.getItemMeta();
-                ItemMeta SugarcaneMeta = Sugarcane.getItemMeta();
-
-                WheatMeta.setDisplayName(ChatColor.YELLOW + "Wheat");
-                assert info != null;
-                lore.add("§7" + config.getConfig().getInt(info.getUuid() + ".wheat" + ".amount") + "§7/1024");
-                lore.add("");
-                lore.add("§8Left Click to Claim Items");
-                WheatMeta.setLore(lore);
-                Wheat.setItemMeta(WheatMeta);
-
-                BeetrootMeta.setDisplayName(ChatColor.RED + "Beetroot");
-                lore2.add("§7" + config.getConfig().getInt(info.getUuid() + ".beetroot" + ".amount") + "§7/1024");
-                lore2.add("");
-                lore2.add("§8Left Click to Claim Items");
-                BeetrootMeta.setLore(lore2);
-                Beetroot.setItemMeta(BeetrootMeta);
-
-                CarrotMeta.setDisplayName(ChatColor.GOLD + "Carrots");
-                lore3.add("§7" + config.getConfig().getInt(info.getUuid() + ".carrots" + ".amount") + "§7/1024");
-                lore3.add("");
-                lore3.add("§8Left Click to Claim Items");
-                CarrotMeta.setLore(lore3);
-                Carrots.setItemMeta(CarrotMeta);
-
-                PotatoMeta.setDisplayName(ChatColor.YELLOW + "Potatoes");
-                lore4.add("§7" + config.getConfig().getInt(info.getUuid() + ".potatoes" + ".amount") + "§7/1024");
-                lore4.add("");
-                lore4.add("§8Left Click to Claim Items");
-                PotatoMeta.setLore(lore4);
-                Potatoes.setItemMeta(PotatoMeta);
-
-                KelpMeta.setDisplayName(ChatColor.DARK_GREEN + "Kelp");
-                lore5.add("§7" + config.getConfig().getInt(info.getUuid() + ".kelp" + ".amount") + "§7/1024");
-                lore5.add("");
-                lore5.add("§8Left Click to Claim Items");
-                KelpMeta.setLore(lore5);
-                Kelp.setItemMeta(KelpMeta);
-
-                BambooMeta.setDisplayName(ChatColor.GREEN + "Bamboo");
-                lore6.add("§7" + config.getConfig().getInt(info.getUuid() + ".bamboo" + ".amount") + "§7/1024");
-                lore6.add("");
-                lore6.add("§8Left Click to Claim Items");
-                BambooMeta.setLore(lore6);
-                Bamboo.setItemMeta(BambooMeta);
-
-                SugarcaneMeta.setDisplayName(ChatColor.DARK_GREEN + "Sugarcane");
-                lore7.add("§7" + config.getConfig().getInt(info.getUuid() + ".sugar_cane" + ".amount") + "§7/1024");
-                lore7.add("");
-                lore7.add("§8Left Click to Claim Items");
-                SugarcaneMeta.setLore(lore7);
-                Sugarcane.setItemMeta(SugarcaneMeta);
-
-                gui.setItem(0, GrayGlasspane);
-                gui.setItem(1, Wheat);
-                gui.setItem(2, Beetroot);
-                gui.setItem(3, Carrots);
-                gui.setItem(4, Potatoes);
-                gui.setItem(5, Kelp);
-                gui.setItem(6, Bamboo);
-                gui.setItem(7, Sugarcane);
-                gui.setItem(8, GrayGlasspane);
+//                config = new BackpackDataManager(JavaPlugin.getPlugin(Main.class));
+//                PersistentDataContainer container = player.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer();
+//                NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "small_backpack");
+//                BackPackInformation info = container.get(key, new BackPackInformationDataType());
+//                if (info == null) return;
+//
+//                ItemStack GrayGlasspane = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
+//                ItemMeta meta = GrayGlasspane.getItemMeta();
+//                assert meta != null;
+//                meta.setDisplayName(ChatColor.GRAY + "");
+//                GrayGlasspane.setItemMeta(meta);
+//
+//                ItemStack Wheat = new ItemStack(Material.WHEAT, 1);
+//                ItemStack Beetroot = new ItemStack(Material.BEETROOT, 1);
+//                ItemStack Carrots = new ItemStack(Material.CARROT, 1);
+//                ItemStack Potatoes = new ItemStack(Material.POTATO, 1);
+//                ItemStack Kelp = new ItemStack(Material.KELP, 1);
+//                ItemStack Bamboo = new ItemStack(Material.BAMBOO);
+//                ItemStack Sugarcane = new ItemStack(Material.SUGAR_CANE, 1);
+//
+//                ItemMeta WheatMeta = Wheat.getItemMeta();
+//                ItemMeta BeetrootMeta = Beetroot.getItemMeta();
+//                ItemMeta CarrotMeta = Carrots.getItemMeta();
+//                ItemMeta PotatoMeta = Potatoes.getItemMeta();
+//                ItemMeta KelpMeta = Kelp.getItemMeta();
+//                ItemMeta BambooMeta = Bamboo.getItemMeta();
+//                ItemMeta SugarcaneMeta = Sugarcane.getItemMeta();
+//
+//                WheatMeta.setDisplayName(ChatColor.YELLOW + "Wheat");
+//                assert info != null;
+//                lore.add("§7" + config.getConfig().getInt(info.getUuid() + ".wheat" + ".amount") + "§7/1024");
+//                lore.add("");
+//                lore.add("§8Left Click to Claim Items");
+//                WheatMeta.setLore(lore);
+//                Wheat.setItemMeta(WheatMeta);
+//
+//                BeetrootMeta.setDisplayName(ChatColor.RED + "Beetroot");
+//                lore2.add("§7" + config.getConfig().getInt(info.getUuid() + ".beetroot" + ".amount") + "§7/1024");
+//                lore2.add("");
+//                lore2.add("§8Left Click to Claim Items");
+//                BeetrootMeta.setLore(lore2);
+//                Beetroot.setItemMeta(BeetrootMeta);
+//
+//                CarrotMeta.setDisplayName(ChatColor.GOLD + "Carrots");
+//                lore3.add("§7" + config.getConfig().getInt(info.getUuid() + ".carrots" + ".amount") + "§7/1024");
+//                lore3.add("");
+//                lore3.add("§8Left Click to Claim Items");
+//                CarrotMeta.setLore(lore3);
+//                Carrots.setItemMeta(CarrotMeta);
+//
+//                PotatoMeta.setDisplayName(ChatColor.YELLOW + "Potatoes");
+//                lore4.add("§7" + config.getConfig().getInt(info.getUuid() + ".potatoes" + ".amount") + "§7/1024");
+//                lore4.add("");
+//                lore4.add("§8Left Click to Claim Items");
+//                PotatoMeta.setLore(lore4);
+//                Potatoes.setItemMeta(PotatoMeta);
+//
+//                KelpMeta.setDisplayName(ChatColor.DARK_GREEN + "Kelp");
+//                lore5.add("§7" + config.getConfig().getInt(info.getUuid() + ".kelp" + ".amount") + "§7/1024");
+//                lore5.add("");
+//                lore5.add("§8Left Click to Claim Items");
+//                KelpMeta.setLore(lore5);
+//                Kelp.setItemMeta(KelpMeta);
+//
+//                BambooMeta.setDisplayName(ChatColor.GREEN + "Bamboo");
+//                lore6.add("§7" + config.getConfig().getInt(info.getUuid() + ".bamboo" + ".amount") + "§7/1024");
+//                lore6.add("");
+//                lore6.add("§8Left Click to Claim Items");
+//                BambooMeta.setLore(lore6);
+//                Bamboo.setItemMeta(BambooMeta);
+//
+//                SugarcaneMeta.setDisplayName(ChatColor.DARK_GREEN + "Sugarcane");
+//                lore7.add("§7" + config.getConfig().getInt(info.getUuid() + ".sugar_cane" + ".amount") + "§7/1024");
+//                lore7.add("");
+//                lore7.add("§8Left Click to Claim Items");
+//                SugarcaneMeta.setLore(lore7);
+//                Sugarcane.setItemMeta(SugarcaneMeta);
+//
+//                gui.setItem(0, GrayGlasspane);
+//                gui.setItem(1, Wheat);
+//                gui.setItem(2, Beetroot);
+//                gui.setItem(3, Carrots);
+//                gui.setItem(4, Potatoes);
+//                gui.setItem(5, Kelp);
+//                gui.setItem(6, Bamboo);
+//                gui.setItem(7, Sugarcane);
+//                gui.setItem(8, GrayGlasspane);
 
             }
         }.runTaskTimer(JavaPlugin.getPlugin(Main.class), 0L, 20L);

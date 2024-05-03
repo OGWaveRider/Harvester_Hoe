@@ -20,10 +20,10 @@ public class Backpack {
     public static BackPackInformation information;
 
     public static void init() {
-        CreateSmallBackpack();
+        createBackpack();
     }
 
-    public static ItemStack CreateSmallBackpack() {
+    public static ItemStack createBackpack() {
         // TODO
         // Create Backpacks from config
         // Store information on backpacks creation
