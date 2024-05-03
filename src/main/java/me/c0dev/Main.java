@@ -20,11 +20,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class Main extends JavaPlugin {
 
 
-    public FileConfiguration config1 = this.getConfig();
+    public FileConfiguration config = this.getConfig();
 
     public static Plugin instance;
-    public BackpackDataManager config;
-    public DataManager data;
+    public BackpackDataManager bpConfig;
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -53,24 +52,19 @@ public final class Main extends JavaPlugin {
         getCommand("giveSmallBP").setExecutor(new giveSmallBP());
 
         // PHH Config
-        this.config1.options().copyDefaults(true);
+        this.config.options().copyDefaults(true);
         saveConfig();
 
 
         // BP Config
-        this.config = new BackpackDataManager(this);
+        this.bpConfig = new BackpackDataManager(this);
 
-        config.getConfig().addDefault("small_bp_total_item_held", 1024);
-        config.getConfig().addDefault("medium_bp_total_item_held", 10048);
-        config.getConfig().addDefault("large_bp_total_item_held", 100032);
-        config.getConfig().options().copyDefaults(true);
-        config.saveDefaultConfig();
+        bpConfig.getConfig().addDefault("small_bp_total_item_held", 1024);
+        bpConfig.getConfig().addDefault("medium_bp_total_item_held", 10048);
+        bpConfig.getConfig().addDefault("large_bp_total_item_held", 100032);
+        bpConfig.getConfig().options().copyDefaults(true);
+        bpConfig.saveDefaultConfig();
 
-        // Harvester Hoe
-        this.data = new DataManager(this);
-        data.getConfig().addDefault("max_upgrade_lvl", 5);
-        data.getConfig().options().copyDefaults(true);
-        data.saveDefaultConfig();
     }
 
     @Override
