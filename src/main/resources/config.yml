@@ -1,36 +1,46 @@
-wheat:
-  1: 10
-  2: 20
-  3: 30
-  4: 40
-carrots:
-  1: 10
-  2: 20
-  3: 30
-  4: 40
-potatoes:
-  1: 10
-  2: 20
-  3: 30
-  4: 40
-beetroot:
-  1: 10
-  2: 20
-  3: 30
-  4: 40
-bamboo:
-  1: 10
-  2: 20
-  3: 30
-  4: 40
-sugar_cane:
-  1: 10
-  2: 20
-  3: 30
-  4: 40
-kelp:
-  1: 10
-  2: 20
-  3: 30
-  4: 40
+backpacks:
+  # More config options?
+  small: 1024
+  medium: 10048
+  large: 100032
+
+harvesterhoe:
+  blocks:
+    # Something here? List of Blocks
+  upgrades:
+    wheat:
+      1: 10
+      2: 20
+      3: 30
+      4: 40
+    carrots:
+      1: 10
+      2: 20
+      3: 30
+      4: 40
+    potatoes:
+      1: 10
+      2: 20
+      3: 30
+      4: 40
+    beetroot:
+      1: 10
+      2: 20
+      3: 30
+      4: 40
+    bamboo:
+      1: 10
+      2: 20
+      3: 30
+      4: 40
+    sugar_cane:
+      1: 10
+      2: 20
+      3: 30
+      4: 40
+    kelp:
+      1: 10
+      2: 20
+      3: 30
+      4: 40
 

@@ -13,6 +13,6 @@ public class Information implements Serializable {
     }
 
     public UUID getUuid() {
-        return  uuid;
+        return uuid;
     }
 }

@@ -1,8 +1,6 @@
 package me.c0dev.HarvesterHoe.Events;
 
-import me.c0dev.Backpacks.Files.BackpackDataManager;
 import me.c0dev.Backpacks.PersistentData.BackPackInformation;
-import me.c0dev.HarvesterHoe.Files.DataManager;
 import me.c0dev.Main;
 import me.c0dev.HarvesterHoe.PersistentData.Information;
 import me.c0dev.HarvesterHoe.PersistentData.InformationDataType;

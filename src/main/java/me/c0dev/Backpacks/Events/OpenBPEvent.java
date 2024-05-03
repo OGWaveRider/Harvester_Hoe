@@ -2,7 +2,6 @@ package me.c0dev.Backpacks.Events;
 
 import me.c0dev.Backpacks.Files.BackpackDataManager;
 import me.c0dev.Backpacks.PersistentData.BackPackInformation;
-import me.c0dev.HarvesterHoe.Files.DataManager;
 import me.c0dev.HarvesterHoe.PersistentData.Information;
 import me.c0dev.HarvesterHoe.PersistentData.InformationDataType;
 import me.c0dev.Main;
@@ -35,7 +34,6 @@ public class OpenBPEvent implements Listener {
 
     private Inventory gui;
     public BackpackDataManager config;
-    public DataManager data;
     @EventHandler
     public void OnRightClickBlock(PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -79,173 +77,19 @@ public class OpenBPEvent implements Listener {
     public void getItems(InventoryClickEvent e) {
         if (!e.getInventory().equals(gui)) return;
         e.setCancelled(true);
-        // get item amount // done
+        // get item amount
         // add item to inventory until inventory is full or item runs out.
-        // deduct item from config
+        // deduct item when taken out
 
         Player player = (Player) e.getWhoClicked();
 
-        data = new DataManager(JavaPlugin.getPlugin(Main.class));
         Information information = getHarvesterHoe(player);
 
         Player p = (Player) e.getWhoClicked();
         PersistentDataContainer container = p.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer();
         NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "small_backpack");
         BackPackInformation info = container.get(key, new BackPackInformationDataType());
-        switch(e.getSlot()) {
-            case 1: {
-                int amount = config.getConfig().getInt(info.getUuid() + ".wheat" + ".amount");
-                int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".wheat");
-                int amountTaken = 0;
-                if (amount > 0 && otherAmount > 0) {
-                    p.getInventory().addItem(new ItemStack(Material.WHEAT, amount));
-                    for (ItemStack stack : p.getInventory().getContents()) {
-                        if (stack != null && stack.getType() == Material.WHEAT) {
-                            amountTaken += stack.getAmount();
-                            config.getConfig().set(info.getUuid() + ".wheat" + ".amount", amount - amountTaken);
-                            data.getConfig().set(information.getUuid() + ".amount_mined" + ".wheat", otherAmount - amountTaken);
-                            if (amountTaken > amount && amountTaken > otherAmount) return;
-                        }
-                        data.saveConfig();
-                        config.saveConfig();
-                    }
-                    p.openInventory(gui);
-                    updateInventory(p);
-                }
-                break;
-            }
-            case 2: {
-                int amount = config.getConfig().getInt(info.getUuid() + ".beetroot" + ".amount");
-                int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".beetroot");
-                int amountTaken = 0;
-                if (amount > 0 && otherAmount > 0) {
-                    p.getInventory().addItem(new ItemStack(Material.BEETROOT, amount));
-                    for (ItemStack stack : p.getInventory().getContents()) {
-                        if (stack != null && stack.getType() == Material.BEETROOT) {
-                            amountTaken += stack.getAmount();
-                            config.getConfig().set(info.getUuid() + ".beetroot" + ".amount", amount - amountTaken);
-                            data.getConfig().set(information.getUuid() + ".amount_mined" + ".beetroot", otherAmount - amountTaken);
-                            if (amountTaken > amount && amountTaken > otherAmount) return;
-                        }
-                        data.saveConfig();
-                        config.saveConfig();
-                    }
-                    p.openInventory(gui);
-                    updateInventory(p);
-                }
-                break;
-            }
-            case 3: {
-                int amount = config.getConfig().getInt(info.getUuid() + ".carrots" + ".amount");
-                int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".carrots");
-                int amountTaken = 0;
-                if (amount > 0 && otherAmount > 0) {
-                    p.getInventory().addItem(new ItemStack(Material.CARROT, amount));
-                    for (ItemStack stack : p.getInventory().getContents()) {
-                        if (stack != null && stack.getType() == Material.CARROT) {
-                            amountTaken += stack.getAmount();
-                            config.getConfig().set(info.getUuid() + ".carrots" + ".amount", amount - amountTaken);
-                            data.getConfig().set(information.getUuid() + ".amount_mined" + ".carrots", otherAmount - amountTaken);
-                            if (amountTaken > amount && amountTaken > otherAmount) return;
-                        }
-                        data.saveConfig();
-                        config.saveConfig();
-                    }
-                    p.openInventory(gui);
-                    updateInventory(p);
-                }
-                break;
-            }
-            case 4: {
-                int amount = config.getConfig().getInt(info.getUuid() + ".potatoes" + ".amount");
-                int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".potatoes");
-                int amountTaken = 0;
-                if (amount > 0 && otherAmount > 0) {
-                    p.getInventory().addItem(new ItemStack(Material.POTATO, amount));
-                    for (ItemStack stack : p.getInventory().getContents()) {
-                        if (stack != null && stack.getType() == Material.POTATO) {
-                            amountTaken += stack.getAmount();
-                            config.getConfig().set(info.getUuid() + ".potatoes" + ".amount", amount - amountTaken);
-                            data.getConfig().set(information.getUuid() + ".amount_mined" + ".potatoes", otherAmount - amountTaken);
-                            if (amountTaken > amount && amountTaken > otherAmount) return;
-                        }
-                        data.saveConfig();
-                        config.saveConfig();
-                    }
-                    p.openInventory(gui);
-                    updateInventory(p);
-                }
-                break;
-            }
-            case 5: {
-                int amount = config.getConfig().getInt(info.getUuid() + ".kelp" + ".amount");
-                int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".kelp");
-                int amountTaken = 0;
-                if (amount > 0 && otherAmount > 0) {
-                    p.getInventory().addItem(new ItemStack(Material.KELP, amount));
-                    for (ItemStack stack : p.getInventory().getContents()) {
-                        if (stack != null && stack.getType() == Material.KELP) {
-                            amountTaken += stack.getAmount();
-                            config.getConfig().set(info.getUuid() + ".kelp" + ".amount", amount - amountTaken);
-                            data.getConfig().set(information.getUuid() + ".amount_mined" + ".kelp", otherAmount - amountTaken);
-                            if (amountTaken > amount && amountTaken > otherAmount) return;
-                        }
-                        data.saveConfig();
-                        config.saveConfig();
-                    }
-                    p.openInventory(gui);
-                    updateInventory(p);
-                }
-                break;
-            }
-            case 6: {
-                int amount = config.getConfig().getInt(info.getUuid() + ".bamboo" + ".amount");
-                int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".bamboo");
-                int amountTaken = 0;
-                if (amount > 0 && otherAmount > 0) {
-                    p.getInventory().addItem(new ItemStack(Material.BAMBOO, amount));
-                    for (ItemStack stack : p.getInventory().getContents()) {
-                        if (stack != null && stack.getType() == Material.BAMBOO) {
-                            amountTaken += stack.getAmount();
-                            config.getConfig().set(info.getUuid() + ".bamboo" + ".amount", amount - amountTaken);
-                            data.getConfig().set(information.getUuid() + ".amount_mined" + ".bamboo", otherAmount - amountTaken);
-                            if (amountTaken > amount && amountTaken > otherAmount) return;
-                        }
-                        data.saveConfig();
-                        config.saveConfig();
-                    }
-                    p.openInventory(gui);
-                    updateInventory(p);
-                }
-                break;
-            }
-            case 7: {
-                int amount = config.getConfig().getInt(info.getUuid() + ".sugar_cane" + ".amount");
-                int otherAmount = data.getConfig().getInt(information.getUuid() + ".amount_mined" + ".sugar_cane");
-                int amountTaken = 0;
-                if (amount > 0 && otherAmount > 0) {
-                    p.getInventory().addItem(new ItemStack(Material.SUGAR_CANE, amount));
-                    for (ItemStack stack : p.getInventory().getContents()) {
-                        if (stack != null && stack.getType() == Material.SUGAR_CANE) {
-                            amountTaken += stack.getAmount();
-                            config.getConfig().set(info.getUuid() + ".sugar_cane" + ".amount", amount - amountTaken);
-                            data.getConfig().set(information.getUuid() + ".amount_mined" + ".sugar_cane", otherAmount - amountTaken);
-                            if (amountTaken > amount && amountTaken > otherAmount) return;
-                        }
-                        data.saveConfig();
-                        config.saveConfig();
-                    }
-                    p.openInventory(gui);
-                    updateInventory(p);
-                }
-                break;
-            }
-            case 99: {
-                //int amount = config.getConfig().getInt(info.getUuid() + ".wheat" + ".amount");
-                data.saveConfig();
-                config.saveConfig();
-            }
-        }
+
     }
 
     public void openNewGUI(Player p) {

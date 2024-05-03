@@ -1,6 +1,6 @@
 package me.c0dev.Backpacks.Commands;
 
-import me.c0dev.Backpacks.Items.SmallBackpack;
+import me.c0dev.Backpacks.Items.Backpack;
 import me.c0dev.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -16,7 +16,7 @@ public class giveSmallBP implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (player.isOp()) {
-                ItemStack item = SmallBackpack.CreateSmallBackpack();
+                ItemStack item = Backpack.CreateSmallBackpack();
                 player.getInventory().addItem(item);
                 player.sendMessage(ChatColor.GREEN + "You have been given a Small Backpack");
             } else {
