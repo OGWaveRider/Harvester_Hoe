@@ -1,7 +1,9 @@
 backpacks:
-  # More config options?
   small:
     size: 1024
+    name: "Small Backpack"
+    glow: false
+    item: CHEST
     lore:
       - ""
       - "Some small lore here"
@@ -9,6 +11,9 @@ backpacks:
       - ""
   medium:
     size: 10048
+    name: "Medium Backpack"
+    glow: false
+    item: TRAPPED_CHEST
     lore:
       - ""
       - "Medium lore here"
@@ -16,6 +21,9 @@ backpacks:
       - ""
   large:
     size: 100032
+    name: "Large Backpack"
+    glow: true
+    item: ENDER_CHEST
     lore:
       - ""
       - "Large lore here"

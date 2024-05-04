@@ -2,11 +2,9 @@ package me.c0dev.Backpacks.Items;
 
 import me.c0dev.Backpacks.PersistentData.BackPackInformation;
 import me.c0dev.Backpacks.PersistentData.BackPackInformationDataType;
-import me.c0dev.HarvesterHoe.PersistentData.InformationDataType;
 import me.c0dev.Main;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.block.Skull;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -18,15 +16,12 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class Backpack {
 
-    private static ItemStack BackPack;
-    private static BackPackInformation information;
+    public static ItemStack BackPack;
+    public static BackPackInformation information;
 
     private static Plugin plugin = JavaPlugin.getPlugin(Main.class);
     private static FileConfiguration config = plugin.getConfig();
@@ -59,10 +54,20 @@ public class Backpack {
         NamespacedKey size = new NamespacedKey(plugin, "backpack_size");
 
         List<String> backpackLore = backpacksConfig.getStringList("lore");
+        String backpackName = backpacksConfig.getString("name");
+        String backpackItem = backpacksConfig.getString("item");
+        boolean backpackGlow = backpacksConfig.getBoolean("glow");
         int backpackSize = backpacksConfig.getInt("size");
 
-        ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1);
-        SkullMeta meta = (SkullMeta) head.getItemMeta();
+        ItemStack item = null;
+
+        if (backpackItem == null) {
+            item = new ItemStack(Material.PLAYER_HEAD);
+        } else {
+            item = new ItemStack(Material.valueOf(backpackItem.toUpperCase()));
+        }
+
+        ItemMeta meta = item.getItemMeta();
 
         information.setSize(backpackSize);
 
@@ -70,11 +75,21 @@ public class Backpack {
             throw new NullPointerException("[!] Skull meta is null!");
         }
 
-        meta.setLore(backpackLore);
+        if (backpackGlow) {
+            meta.addEnchant(Enchantment.LURE, 1, true);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+
+        meta.setDisplayName(backpackName);
+        meta.setLore(backpackLore); // TODO Display size???
         meta.getPersistentDataContainer().set(uuid, new BackPackInformationDataType(), information);
         meta.getPersistentDataContainer().set(size, new BackPackInformationDataType(), information);
 
-        head.setItemMeta(meta);
-        return head;
+        item.setItemMeta(meta);
+        item.setAmount(1);
+
+        BackPack = item;
+
+        return item;
     }
 }

@@ -24,12 +24,12 @@ public class HarvesterHoe {
         ItemStack item = new ItemStack(Material.NETHERITE_HOE, 1);
         ItemMeta meta = item.getItemMeta();
         NamespacedKey key = new NamespacedKey(Main.getPlugin(Main.class), "harvester_hoe_uuid");
-        assert meta != null;
+        if (meta == null) {
+            throw new NullPointerException("Hoe meta is null!");
+        }
         meta.setDisplayName("§2§lHarvester Hoe");
             // TODO Store more data on hoe & Display as lore :)
             meta.getPersistentDataContainer().set(key, new InformationDataType(), information);
-
-
 
             meta.addEnchant(Enchantment.LURE, 1, true);
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
