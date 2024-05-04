@@ -19,8 +19,8 @@ import java.util.List;
 
 public class Backpack {
 
-    private static Plugin plugin = JavaPlugin.getPlugin(Main.class);
-    private static FileConfiguration config = plugin.getConfig();
+    private static final Plugin plugin = JavaPlugin.getPlugin(Main.class);
+    private static final FileConfiguration config = plugin.getConfig();
     public static ItemStack BackPack;
     public static BackPackInformation information;
 

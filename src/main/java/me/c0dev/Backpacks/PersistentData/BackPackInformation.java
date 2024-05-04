@@ -5,6 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class BackPackInformation implements Serializable {
 
@@ -12,20 +13,25 @@ public class BackPackInformation implements Serializable {
     private final UUID uuid;
     private int size;
     private int max_items;
-    private ArrayList<ItemStack> items;
+    private ConcurrentHashMap<String, Integer> items;
 
     public BackPackInformation() {
         this.uuid = UUID.randomUUID();
         this.size = 0;
         this.max_items = 0;
-        this.items = new ArrayList<>();
+        this.items = new ConcurrentHashMap<>();
     }
 
-    public boolean addItem(ItemStack item) {
-        return this.items.add(item);
+    public Integer addItem(String item, int amount) {
+        return this.items.put(item, amount);
     }
 
-    public boolean removeItem(ItemStack item) {
+    public Integer removeItemAmount(String item, int amount) {
+        int currentAmount = this.items.get(item);
+        return this.items.put(item, currentAmount - amount);
+    }
+
+    public Integer removeItem(String item) {
         return this.items.remove(item);
     }
 
@@ -33,11 +39,11 @@ public class BackPackInformation implements Serializable {
         return this.items.size();
     }
 
-    public ArrayList<ItemStack> getItems() {
+    public ConcurrentHashMap<String, Integer> getItems() {
         return this.items;
     }
 
-    public ArrayList<ItemStack> setItems(ArrayList<ItemStack> items) {
+    public ConcurrentHashMap<String, Integer> setItems(ConcurrentHashMap<String, Integer> items) {
         return this.items = items;
     }
 

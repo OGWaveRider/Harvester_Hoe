@@ -2,6 +2,7 @@ package me.c0dev.Backpacks.Events;
 
 import me.c0dev.Backpacks.PersistentData.BackPackInformation;
 import me.c0dev.Backpacks.PersistentData.BackPackInformationDataType;
+import me.c0dev.ItemSerialization;
 import me.c0dev.Main;
 import me.c0dev.HarvesterHoe.Item.HarvesterHoe;
 import me.c0dev.Backpacks.Items.Backpack;
@@ -21,6 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class BlockBreakEvent implements Listener {
 
@@ -71,7 +73,22 @@ public class BlockBreakEvent implements Listener {
         // If item is not in backpack create new stack & take up new item slot
         // Add item to backpack
 
-
+        for (ItemStack drop : drops) {
+            if (backpackIsFull(backpackItem)) {
+                return;
+            }
+            if (itemIsInbackpack(drop, backpackItem)) {
+                if (!backpackIsFullItem(drop, backpackItem)) {
+                    // TODO
+                } else {
+                    // TODO
+                }
+            } else {
+                if (!backpackIsFullItem(drop, backpackItem)) {
+                    // TODO
+                }
+            }
+        }
     }
 
     public ItemStack getBackpackInInventory(PlayerInventory inventory) {
@@ -102,12 +119,29 @@ public class BlockBreakEvent implements Listener {
         return foundBackpack;
     }
 
+    public boolean itemIsInbackpack(@NonNull ItemStack item, ItemStack backpack) {
+        ItemStack itemClone = item.clone();
+        itemClone.setAmount(1);
+        String itemSerialized = ItemSerialization.serializeItem(itemClone);
+        ItemMeta itemMeta = backpack.getItemMeta();
+        PersistentDataContainer container = Objects.requireNonNull(itemMeta).getPersistentDataContainer();
+        BackPackInformation backPackInformation = container.get(Backpack.uuid, backPackData);
+        ConcurrentHashMap<String, Integer> storedItems = Objects.requireNonNull(backPackInformation).getItems();
+        return storedItems.containsKey(itemSerialized);
+    }
+
     // Checks for a specific item in the backpack to see if that slot is full
     public boolean backpackIsFullItem(@NonNull ItemStack item, ItemStack backpack) {
-        // TODO
-        // If item slot is full & there is another available slot take up new slot
-        // If no slots do nothing || If slots are full for that item do nothing
-        return false;
+        ItemStack itemClone = item.clone();
+        itemClone.setAmount(1);
+        String itemSerialized = ItemSerialization.serializeItem(itemClone);
+        ItemMeta itemMeta = backpack.getItemMeta();
+        PersistentDataContainer container = Objects.requireNonNull(itemMeta).getPersistentDataContainer();
+        BackPackInformation backPackInformation = container.get(Backpack.uuid, backPackData);
+        ConcurrentHashMap<String, Integer> storedItems = Objects.requireNonNull(backPackInformation).getItems();
+        int storedAmount = storedItems.get(itemSerialized);
+        int maxItemStorage = backPackInformation.getSize();
+        return storedAmount >= maxItemStorage;
     }
 
     // Checks if all slots in the backpack are full
@@ -115,10 +149,10 @@ public class BlockBreakEvent implements Listener {
         ItemMeta itemMeta = backpack.getItemMeta();
         PersistentDataContainer container = Objects.requireNonNull(itemMeta).getPersistentDataContainer();
         BackPackInformation backPackInformation = container.get(Backpack.uuid, backPackData);
-        for (int itemIdx = 0; itemIdx < Objects.requireNonNull(backPackInformation).getMaxItems(); itemIdx++) {
-            int backpackSize = backPackInformation.getSize();
-            int itemAmount = backPackInformation.getItems().get(itemIdx).getAmount();
-            if (backpackSize < itemAmount) {
+        int itemAmountPerSlotMax = Objects.requireNonNull(backPackInformation).getSize();
+        for (Map.Entry<String, Integer> entry : backPackInformation.getItems().entrySet()) {
+            int itemAmount = entry.getValue();
+            if (itemAmount < itemAmountPerSlotMax) {
                 continue;
             }
             return true;

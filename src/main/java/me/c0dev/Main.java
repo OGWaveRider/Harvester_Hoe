@@ -1,7 +1,6 @@
 package me.c0dev;
 
 import me.c0dev.Backpacks.Commands.giveBP;
-import me.c0dev.Backpacks.Events.BlockBreakEvent;
 import me.c0dev.Backpacks.Events.OpenBPEvent;
 import me.c0dev.Backpacks.Items.Backpack;
 import me.c0dev.HarvesterHoe.Commands.commands;
@@ -34,7 +33,6 @@ public final class Main extends JavaPlugin {
         HarvesterHoe.init();
         Backpack.init();
 
-        getServer().getPluginManager().registerEvents(new BlockBreakEvent(), this);
         getServer().getPluginManager().registerEvents(new event(), this);
         getServer().getPluginManager().registerEvents(new OpenBPEvent(), this);
         Objects.requireNonNull(getCommand("givePremiumHarvesterHoe")).setExecutor(new commands());
