@@ -15,19 +15,19 @@ public class giveBP implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // Todo redo
-        if (!(sender instanceof Player)) {
-            main.getLogger().info("You cannot run this command!");
-        }
-        Player player = (Player) sender;
-        String type = args[0];
-        if (player.isOp()) {
-            if (player.getInventory().firstEmpty() == -1) {
-                player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "You're Inventory is full!");
-                return false;
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+            String type = args[0];
+            if (player.isOp()) {
+                if (player.getInventory().firstEmpty() == -1) {
+                    player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "You're Inventory is full!");
+                    return false;
+                }
+                ItemStack backpack = Backpack.createBackpack(type);
+                player.getInventory().addItem(backpack);
+                return true;
             }
-            ItemStack backpack = Backpack.createBackpack(type);
-            player.getInventory().addItem(backpack);
-            return true;
+            return false;
         }
         return false;
     }
