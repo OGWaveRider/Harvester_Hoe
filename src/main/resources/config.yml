@@ -1,8 +1,27 @@
 backpacks:
   # More config options?
-  small: 1024
-  medium: 10048
-  large: 100032
+  small:
+    size: 1024
+    lore:
+      - ""
+      - "Some small lore here"
+      - "Another small lore here"
+      - ""
+  medium:
+    size: 10048
+    lore:
+      - ""
+      - "Medium lore here"
+      - "Another medium lore here"
+      - ""
+  large:
+    size: 100032
+    lore:
+      - ""
+      - "Large lore here"
+      - "Another large lore here"
+      - ""
+
 
 harvesterhoe:
   blocks:

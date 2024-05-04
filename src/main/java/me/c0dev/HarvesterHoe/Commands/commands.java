@@ -1,6 +1,6 @@
 package me.c0dev.HarvesterHoe.Commands;
 
-import me.c0dev.HarvesterHoe.Item.items;
+import me.c0dev.HarvesterHoe.Item.HarvesterHoe;
 import me.c0dev.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -21,7 +21,7 @@ public class commands implements CommandExecutor
 
             if (player.isOp() || player.hasPermission("givePremiumHarvesterHoe"))
             {
-                ItemStack item = items.CreateHarvesterHoe();
+                ItemStack item = HarvesterHoe.CreateHarvesterHoe();
                 player.getInventory().addItem(item);
                 player.sendMessage(ChatColor.GREEN + "You have been given a Premium HarvesterHoe");
             }

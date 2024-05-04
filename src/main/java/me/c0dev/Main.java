@@ -6,7 +6,7 @@ import me.c0dev.Backpacks.Items.Backpack;
 import me.c0dev.HarvesterHoe.Commands.commands;
 import me.c0dev.HarvesterHoe.Commands.getUUID;
 import me.c0dev.HarvesterHoe.Events.event;
-import me.c0dev.HarvesterHoe.Item.items;
+import me.c0dev.HarvesterHoe.Item.HarvesterHoe;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,7 +30,7 @@ public final class Main extends JavaPlugin {
         getLogger().info("===============================");
         getLogger().info("===============================");
         instance = this;
-        items.init();
+        HarvesterHoe.init();
         Backpack.init();
 
 
@@ -49,6 +49,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        saveConfig();
     }
     public static Plugin getInstance()
     {

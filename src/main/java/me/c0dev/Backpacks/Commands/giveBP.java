@@ -4,25 +4,21 @@ import me.c0dev.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class giveBP implements CommandExecutor {
     public Main main;
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // Todo redo
-//        if (sender instanceof Player) {
-//            Player player = (Player) sender;
-//            if (player.isOp()) {
-//                ItemStack item = Backpack.createBackpack();
-//                player.getInventory().addItem(item);
-//                player.sendMessage(ChatColor.GREEN + "You have been given a Small Backpack");
-//            } else {
-//                player.sendMessage(ChatColor.RED + "You do not have the correct permissions!");
-//            }
-//        }
-//        else {
-//            main.getLogger().info("You have to be a player to run the command!");
-//        }
-        return true;
+        if (!(sender instanceof Player)) {
+            main.getLogger().info("You cannot run this command!");
+        }
+        Player player = (Player) sender;
+        String type = args[0];
+        if (player.isOp()) {
+
+        }
+        return false;
     }
 }
