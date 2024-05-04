@@ -1,6 +1,7 @@
 backpacks:
   small:
     size: 1024
+    maxItems: 3
     name: "Small Backpack"
     glow: false
     item: CHEST
@@ -11,6 +12,7 @@ backpacks:
       - ""
   medium:
     size: 10048
+    maxItems: 6
     name: "Medium Backpack"
     glow: false
     item: TRAPPED_CHEST
@@ -21,6 +23,7 @@ backpacks:
       - ""
   large:
     size: 100032
+    maxItems: 9
     name: "Large Backpack"
     glow: true
     item: ENDER_CHEST

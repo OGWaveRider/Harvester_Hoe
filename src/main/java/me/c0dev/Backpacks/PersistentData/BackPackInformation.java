@@ -11,12 +11,13 @@ public class BackPackInformation implements Serializable {
     private static final long serialVersionUID = 1L;
     private final UUID uuid;
     private int size;
-
+    private int max_items;
     private ArrayList<ItemStack> items;
 
     public BackPackInformation() {
         this.uuid = UUID.randomUUID();
         this.size = 0;
+        this.max_items = 0;
         this.items = new ArrayList<>();
     }
 
@@ -30,6 +31,10 @@ public class BackPackInformation implements Serializable {
 
     public int getItemAmount() {
         return this.items.size();
+    }
+
+    public ArrayList<ItemStack> getItems() {
+        return this.items;
     }
 
     public ArrayList<ItemStack> setItems(ArrayList<ItemStack> items) {
@@ -46,6 +51,14 @@ public class BackPackInformation implements Serializable {
 
     public int getSize() {
         return size;
+    }
+
+    public int getMaxItems() {
+        return this.max_items;
+    }
+
+    public int setMaxitems(int newMax) {
+        return this.max_items = newMax;
     }
 
 }

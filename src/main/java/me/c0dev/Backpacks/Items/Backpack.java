@@ -11,7 +11,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,6 +27,7 @@ public class Backpack {
     public static NamespacedKey uuid = new NamespacedKey(plugin, "backpack_uuid");
     public static NamespacedKey size = new NamespacedKey(plugin, "backpack_size");
     public static NamespacedKey items = new NamespacedKey(plugin, "backpack_items");
+    public static NamespacedKey max_items = new NamespacedKey(plugin, "backpack_max_items");
 
     public static void init() {
         createAllBackpacks();
@@ -58,6 +58,7 @@ public class Backpack {
         String backpackItem = backpacksConfig.getString("item");
         boolean backpackGlow = backpacksConfig.getBoolean("glow");
         int backpackSize = backpacksConfig.getInt("size");
+        int backpackMaxItems = backpacksConfig.getInt("maxItems");
 
         ItemStack item = null;
 
@@ -70,6 +71,7 @@ public class Backpack {
         ItemMeta meta = item.getItemMeta();
 
         information.setSize(backpackSize);
+        information.setMaxitems(backpackMaxItems);
 
         if (meta == null) {
             throw new NullPointerException("Item meta is null");
@@ -82,9 +84,10 @@ public class Backpack {
 
         meta.setDisplayName(backpackName);
         meta.setLore(backpackLore); // TODO Display size???
-        meta.getPersistentDataContainer().set(uuid, new BackPackInformationDataType(), information);
-        meta.getPersistentDataContainer().set(size, new BackPackInformationDataType(), information);
-        meta.getPersistentDataContainer().set(items, new BackPackInformationDataType(), information);
+        meta.getPersistentDataContainer().set(uuid, new BackPackInformationDataType(), information); // Unique identifier for backpack
+        meta.getPersistentDataContainer().set(size, new BackPackInformationDataType(), information); // Max number of items to hold in a stack
+        meta.getPersistentDataContainer().set(items, new BackPackInformationDataType(), information); // Items stored in backpack
+        meta.getPersistentDataContainer().set(max_items, new BackPackInformationDataType(), information); // Max number of item types
 
         item.setItemMeta(meta);
         item.setAmount(1);
