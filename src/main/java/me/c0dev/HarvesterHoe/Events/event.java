@@ -1,13 +1,10 @@
 package me.c0dev.HarvesterHoe.Events;
 
-import me.c0dev.Backpacks.PersistentData.BackPackInformation;
 import me.c0dev.Main;
 import me.c0dev.HarvesterHoe.PersistentData.Information;
 import me.c0dev.HarvesterHoe.PersistentData.InformationDataType;
-import me.c0dev.Backpacks.PersistentData.BackPackInformationDataType;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.Configuration;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -32,7 +29,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class event implements Listener {
     private static Inventory gui;
-    private static final EnumSet<Material> MaterialList = EnumSet.noneOf(Material.class);
+    private static final EnumSet<Material> ValidMaterials = EnumSet.noneOf(Material.class);
+    private static final HashMap<Block, Material> BlockToSeedMap = new HashMap<>();
     private static final ConcurrentHashMap<Material, Integer> MaterialAmount = new ConcurrentHashMap<>(); // TODO Store on HarvesterHoe
     private static final Plugin plugin = Main.getPlugin(Main.class);
     private static final FileConfiguration config = plugin.getConfig();
@@ -84,7 +82,10 @@ public class event implements Listener {
         }
 
         Material cropBlockType = block.getType();
-        Material seedMaterial = getSeedMaterial(block);
+        Material seedMaterial = getSeedMaterial(block, cropBlockType);
+        if (seedMaterial == null) {
+            return;
+        }
         if (isSeedInInv(player, seedMaterial)) {
             replantCrop(player, block.getLocation(), cropBlockType);
         }
@@ -139,8 +140,22 @@ public class event implements Listener {
     }
 
     // Getting the seeds material from the crop block
-    public Material getSeedMaterial(Block cropBlock) {
-        return cropBlock != null && !cropBlock.isEmpty() && MaterialList.contains(cropBlock.getType()) ? cropBlock.getDrops().stream().filter(drop -> drop.getType() != cropBlock.getType()).findFirst().get().getType() : null;
+    public Material getSeedMaterial(Block block, Material cropBlockType) {
+        if (!ValidMaterials.contains(cropBlockType)) {
+            return null;
+        }
+        if (!BlockToSeedMap.containsKey(block)) {
+            Collection<ItemStack> blockDrops = block.getDrops();
+            if (blockDrops.size() > 1) {
+                for (ItemStack drop : blockDrops) {
+                    if (!drop.getType().equals(cropBlockType)) {
+                        return BlockToSeedMap.putIfAbsent(block, drop.getType());
+                    }
+                }
+            }
+            return BlockToSeedMap.putIfAbsent(block, cropBlockType);
+        }
+        return BlockToSeedMap.get(block);
     }
 
 
