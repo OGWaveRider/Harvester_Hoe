@@ -20,11 +20,14 @@ import java.util.List;
 
 public class Backpack {
 
+    private static Plugin plugin = JavaPlugin.getPlugin(Main.class);
+    private static FileConfiguration config = plugin.getConfig();
     public static ItemStack BackPack;
     public static BackPackInformation information;
 
-    private static Plugin plugin = JavaPlugin.getPlugin(Main.class);
-    private static FileConfiguration config = plugin.getConfig();
+    public static NamespacedKey uuid = new NamespacedKey(plugin, "backpack_uuid");
+    public static NamespacedKey size = new NamespacedKey(plugin, "backpack_size");
+    public static NamespacedKey items = new NamespacedKey(plugin, "backpack_items");
 
     public static void init() {
         createAllBackpacks();
@@ -50,9 +53,6 @@ public class Backpack {
             throw new NullPointerException("Backpacks configuration not found!");
         }
 
-        NamespacedKey uuid = new NamespacedKey(plugin, "backpack_uuid");
-        NamespacedKey size = new NamespacedKey(plugin, "backpack_size");
-
         List<String> backpackLore = backpacksConfig.getStringList("lore");
         String backpackName = backpacksConfig.getString("name");
         String backpackItem = backpacksConfig.getString("item");
@@ -72,7 +72,7 @@ public class Backpack {
         information.setSize(backpackSize);
 
         if (meta == null) {
-            throw new NullPointerException("[!] Skull meta is null!");
+            throw new NullPointerException("Item meta is null");
         }
 
         if (backpackGlow) {
@@ -84,6 +84,7 @@ public class Backpack {
         meta.setLore(backpackLore); // TODO Display size???
         meta.getPersistentDataContainer().set(uuid, new BackPackInformationDataType(), information);
         meta.getPersistentDataContainer().set(size, new BackPackInformationDataType(), information);
+        meta.getPersistentDataContainer().set(items, new BackPackInformationDataType(), information);
 
         item.setItemMeta(meta);
         item.setAmount(1);
