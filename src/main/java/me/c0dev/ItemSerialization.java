@@ -25,7 +25,7 @@ public class ItemSerialization {
 
     }
 
-    public ItemStack deserializeItem(String base64) throws IOException {
+    public static ItemStack deserializeItem(String base64) throws IOException {
         try {
             ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decode(base64));
             BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);

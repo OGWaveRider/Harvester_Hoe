@@ -29,6 +29,8 @@ public class Backpack {
     public static NamespacedKey items = new NamespacedKey(plugin, "backpack_items");
     public static NamespacedKey max_items = new NamespacedKey(plugin, "backpack_max_items");
 
+    public static NamespacedKey backpack_type = new NamespacedKey(plugin, "backpack_type");
+
     public static void init() {
         createAllBackpacks();
     }
@@ -71,7 +73,8 @@ public class Backpack {
         ItemMeta meta = item.getItemMeta();
 
         information.setSize(backpackSize);
-        information.setMaxitems(backpackMaxItems);
+        information.setMaxItems(backpackMaxItems);
+        information.setType(type);
 
         if (meta == null) {
             throw new NullPointerException("Item meta is null");
@@ -88,6 +91,7 @@ public class Backpack {
         meta.getPersistentDataContainer().set(size, new BackPackInformationDataType(), information); // Max number of items to hold in a stack
         meta.getPersistentDataContainer().set(items, new BackPackInformationDataType(), information); // Items stored in backpack
         meta.getPersistentDataContainer().set(max_items, new BackPackInformationDataType(), information); // Max number of item types
+        meta.getPersistentDataContainer().set(backpack_type, new BackPackInformationDataType(), information); // Type of backpack, small, medium, large, etc.
 
         item.setItemMeta(meta);
         item.setAmount(1);

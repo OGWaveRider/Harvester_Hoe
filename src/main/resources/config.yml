@@ -2,6 +2,16 @@ backpacks:
   small:
     size: 1024
     maxItems: 3
+    menu:
+      type: "CHEST"
+      title: "§8Small Backpack"
+      item:
+        material: "RED_STAINED_GLASS_PANE"
+        lore:
+          - ""
+          - "§7<amount>/<amountMax>"
+          - ""
+      partition: "000000000 000111000 000000000" # 0's are the item defined above 1's are free item slots
     name: "Small Backpack"
     glow: false
     item: CHEST
@@ -12,8 +22,18 @@ backpacks:
       - ""
   medium:
     size: 10048
-    maxItems: 6
-    name: "Medium Backpack"
+    maxItems: 5
+    menu:
+      type: "CHEST"
+      title: "§8Medium Backpack" # Title displayed in menu
+      item:
+        material: "RED_STAINED_GLASS_PANE"
+        lore:
+          - ""
+          - "§7<amount>/<amountMax>"
+          - ""
+      partition: "000000000 001111100 000000000" # 0's are the item defined above 1's are free item slots
+    name: "§7Medium Backpack" # Name of item
     glow: false
     item: TRAPPED_CHEST
     lore:
@@ -24,6 +44,16 @@ backpacks:
   large:
     size: 100032
     maxItems: 9
+    menu:
+      type: "CHEST"
+      title: "§8Medium Backpack" # Title displayed in menu
+      item:
+        material: "RED_STAINED_GLASS_PANE"
+        lore:
+          - ""
+          - "§7<amount>/<amountMax>"
+          - ""
+      partition: "000000000 111111111 000000000" # 0's are the item defined above 1's are free item slots
     name: "Large Backpack"
     glow: true
     item: ENDER_CHEST

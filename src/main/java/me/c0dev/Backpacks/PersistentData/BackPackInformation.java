@@ -11,6 +11,7 @@ public class BackPackInformation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private final UUID uuid;
+    private String type;
     private int size;
     private int max_items;
     private ConcurrentHashMap<String, Integer> items;
@@ -20,10 +21,13 @@ public class BackPackInformation implements Serializable {
         this.size = 0;
         this.max_items = 0;
         this.items = new ConcurrentHashMap<>();
+        this.type = null;
     }
 
     public Integer addItem(String item, int amount) {
-        return this.items.put(item, amount);
+        int currentAmount = this.items.get(item);
+        int newAmount = currentAmount + amount;
+        return this.items.put(item, newAmount);
     }
 
     public Integer removeItemAmount(String item, int amount) {
@@ -63,8 +67,15 @@ public class BackPackInformation implements Serializable {
         return this.max_items;
     }
 
-    public int setMaxitems(int newMax) {
+    public int setMaxItems(int newMax) {
         return this.max_items = newMax;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return this.type;
+    }
 }
