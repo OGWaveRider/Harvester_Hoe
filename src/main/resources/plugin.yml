@@ -12,3 +12,6 @@ commands:
   giveBP:
     description: Gives a backpack
     usage: /giveBP <type>
+  dumpBPData:
+    description: Dumps Backpack information
+    usage: /dumpBPData

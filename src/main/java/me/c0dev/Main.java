@@ -1,5 +1,6 @@
 package me.c0dev;
 
+import me.c0dev.Backpacks.Commands.dumpBPData;
 import me.c0dev.Backpacks.Commands.giveBP;
 import me.c0dev.Backpacks.Events.BackpackOpenEvent;
 import me.c0dev.Backpacks.Items.Backpack;
@@ -38,6 +39,7 @@ public final class Main extends JavaPlugin {
         Objects.requireNonNull(getCommand("givePremiumHarvesterHoe")).setExecutor(new commands());
         Objects.requireNonNull(getCommand("getUUID")).setExecutor(new getUUID());
         Objects.requireNonNull(getCommand("giveBP")).setExecutor(new giveBP());
+        Objects.requireNonNull(getCommand("dumpBPData")).setExecutor(new dumpBPData());
         // PHH Config
         instance.saveConfig();
 
