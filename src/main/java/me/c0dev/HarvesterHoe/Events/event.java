@@ -90,6 +90,8 @@ public class event implements Listener {
         if (isSeedInInv(player, seedMaterial)) {
             replantCrop(player, block.getLocation(), cropBlockType);
         }
+        me.c0dev.Backpacks.Events.BlockBreakEvent event = new me.c0dev.Backpacks.Events.BlockBreakEvent();
+        event.onBlockBreak(e);
     }
 
     @EventHandler

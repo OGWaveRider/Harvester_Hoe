@@ -22,7 +22,7 @@ public class Backpack {
     private static final Plugin plugin = JavaPlugin.getPlugin(Main.class);
     private static final FileConfiguration config = plugin.getConfig();
     public static ItemStack BackPack;
-    public static BackPackInformation information;
+    public static BackPackInformation information = new BackPackInformation();
 
     public static NamespacedKey uuid = new NamespacedKey(plugin, "backpack_uuid");
     public static NamespacedKey size = new NamespacedKey(plugin, "backpack_size");

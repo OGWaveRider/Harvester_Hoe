@@ -30,7 +30,6 @@ public class HarvesterHoe {
         meta.setDisplayName("§2§lHarvester Hoe");
             // TODO Store more data on hoe & Display as lore :)
             meta.getPersistentDataContainer().set(key, new InformationDataType(), information);
-
             meta.addEnchant(Enchantment.LURE, 1, true);
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);

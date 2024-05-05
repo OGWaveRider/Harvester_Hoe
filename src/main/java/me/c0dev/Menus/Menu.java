@@ -14,21 +14,22 @@ import java.util.function.Function;
 public class Menu {
 
     public static Map<Integer, ItemStack> slots = new HashMap<>();
+
+    private static int size = 0;
     public static Inventory menuInventory;
 
     public Menu(InventoryType inventoryType, ItemStack filler, String name, String slotSet) {
         this.menuInventory = Bukkit.createInventory(null, inventoryType, name);
-        for (int slotIdx = 0; slotIdx < menuInventory.getSize(); slotIdx++) {
-            char[] chars = slotSet.toCharArray();
-            char character = chars[slotIdx];
-            switch(character) {
-                case '0':
-                    menuInventory.setItem(slotIdx, filler);
-                    slots.put(slotIdx, filler);
-                    break;
+        int i = 0;
+        for (char c : slotSet.toCharArray()) {
+            switch (c) {
                 case '1':
-                    menuInventory.setItem(slotIdx, null);
-                    slots.put(slotIdx, null);
+                    menuInventory.setItem(i++, null);
+                    slots.put(this.size++, null);
+                    break;
+                case '0':
+                    menuInventory.setItem(i++, filler);
+                    slots.put(this.size++, filler);
                     break;
             }
         }

@@ -101,9 +101,15 @@ public class BackpackOpenEvent implements Listener {
             return;
         }
 
+        if (inventory.getType().equals(InventoryType.PLAYER)) {
+            event.setCancelled(true);
+            return;
+        }
+
         if (!inventory.equals(Menu.menuInventory)) {
             return;
         }
+
 
         ItemStack backpack = getBackpackInInventory(playerInventory);
 
@@ -127,6 +133,7 @@ public class BackpackOpenEvent implements Listener {
         int clickedSlot = event.getSlot();
 
         if (!slots.containsKey(clickedSlot)) {
+            System.out.println("Slot not found: " + clickedSlot);
             return;
         }
 
@@ -138,6 +145,11 @@ public class BackpackOpenEvent implements Listener {
 
         int itemSlotMaxAmount = backPackInformation.getSize();
         ItemStack itemInSlot = slots.get(clickedSlot);
+
+        if (itemInSlot == null) {
+            return;
+        }
+
         ItemMeta itemSlotMeta = itemInSlot.getItemMeta();
 
         if (itemSlotMeta == null) {
@@ -145,7 +157,20 @@ public class BackpackOpenEvent implements Listener {
         }
 
         String itemSerialized = ItemSerialization.serializeItem(itemInSlot);
-        int itemAmount = backPackInformation.getItems().get(itemSerialized);
+
+        ConcurrentHashMap<String, Integer> items = backPackInformation.getItems();
+
+        if (items == null || items.isEmpty()) {
+            event.setCancelled(true);
+            return;
+        }
+
+        if (!items.containsKey(itemSerialized)) {
+            event.setCancelled(true);
+            return;
+        }
+
+        int itemAmount = items.get(itemSerialized);
         // TODO
         // On left click (Take all item) try and withdrawl all items
         // On right click (Take half item) try and withdrawl 64

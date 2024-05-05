@@ -17,17 +17,21 @@ public class giveBP implements CommandExecutor {
         // Todo redo
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            String type = args[0];
-            if (player.isOp()) {
-                if (player.getInventory().firstEmpty() == -1) {
-                    player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "You're Inventory is full!");
-                    return false;
-                }
-                ItemStack backpack = Backpack.createBackpack(type);
-                player.getInventory().addItem(backpack);
-                return true;
+            if (!player.isOp()) {
+                return false;
             }
-            return false;
+            if (args.length == 0) {
+                player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "Missing backpack type!");
+                return false;
+            }
+            String type = args[0];
+            if (player.getInventory().firstEmpty() == -1) {
+                player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "You're Inventory is full!");
+                return false;
+            }
+            ItemStack backpack = Backpack.createBackpack(type);
+            player.getInventory().addItem(backpack);
+            return true;
         }
         return false;
     }
