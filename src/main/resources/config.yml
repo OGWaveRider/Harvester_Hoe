@@ -46,7 +46,7 @@ backpacks:
     maxItems: 9
     menu:
       type: "CHEST"
-      title: "§8Medium Backpack" # Title displayed in menu
+      title: "§8Large Backpack" # Title displayed in menu
       item:
         material: "RED_STAINED_GLASS_PANE"
         lore:

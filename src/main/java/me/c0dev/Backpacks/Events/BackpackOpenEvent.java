@@ -96,12 +96,13 @@ public class BackpackOpenEvent implements Listener {
         Player player = (Player) event.getWhoClicked();
         PlayerInventory playerInventory = player.getInventory();
         Inventory inventory = event.getClickedInventory();
+        Inventory topInventory = event.getInventory();
 
         if (inventory == null) {
             return;
         }
 
-        if (inventory.getType().equals(InventoryType.PLAYER)) {
+        if (inventory.getType().equals(InventoryType.PLAYER) && topInventory.equals(Menu.menuInventory)) {
             event.setCancelled(true);
             return;
         }

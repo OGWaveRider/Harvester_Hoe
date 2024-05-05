@@ -39,15 +39,14 @@ public final class Main extends JavaPlugin {
         Objects.requireNonNull(getCommand("getUUID")).setExecutor(new getUUID());
         Objects.requireNonNull(getCommand("giveBP")).setExecutor(new giveBP());
         // PHH Config
-        this.config.options().copyDefaults(true);
-        saveConfig();
+        instance.saveConfig();
 
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        saveConfig();
+        instance.saveConfig();
     }
     public static Plugin getInstance()
     {
