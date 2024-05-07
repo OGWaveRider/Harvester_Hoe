@@ -25,6 +25,7 @@ public class Menu {
                     break;
                 case '0':
                     menuInventory.setItem(this.size++, filler);
+                    slots.put(this.size++, filler);
                     break;
             }
         }

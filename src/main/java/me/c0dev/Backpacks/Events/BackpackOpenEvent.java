@@ -3,6 +3,7 @@ package me.c0dev.Backpacks.Events;
 import me.c0dev.Backpacks.Items.Backpack;
 import me.c0dev.Backpacks.PersistentData.BackPackInformation;
 import me.c0dev.ItemSerialization;
+import me.c0dev.Locales.*;
 import me.c0dev.Main;
 import me.c0dev.Backpacks.PersistentData.BackPackInformationDataType;
 import me.c0dev.Menus.Menu;
@@ -178,7 +179,7 @@ public class BackpackOpenEvent implements Listener {
         switch(clickType) {
             case LEFT:
                 if (playerInventory.firstEmpty() == -1) {
-                    player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "You're Inventory is full!");
+                    Locales.localeNotify(player, "You're inventory is full!", true);
                     return;
                 }
                 for (int i = 0; i < itemAmount; i++) {
@@ -192,7 +193,7 @@ public class BackpackOpenEvent implements Listener {
                 break;
             case RIGHT:
                 if (playerInventory.firstEmpty() == -1) {
-                    player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "You're Inventory is full!");
+                    Locales.localeNotify(player, "You're inventory is full!", true);
                     return;
                 }
                 ItemStack itemClone = itemInSlot.clone();

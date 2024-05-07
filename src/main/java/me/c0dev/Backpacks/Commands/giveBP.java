@@ -1,5 +1,6 @@
 package me.c0dev.Backpacks.Commands;
 
+import me.c0dev.Locales.Locales;
 import me.c0dev.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -21,12 +22,12 @@ public class giveBP implements CommandExecutor {
                 return false;
             }
             if (args.length == 0) {
-                player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "Missing backpack type!");
+                Locales.localeNotify(player, "Missing backpack type!", true);
                 return false;
             }
             String type = args[0];
             if (player.getInventory().firstEmpty() == -1) {
-                player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "You're Inventory is full!");
+                Locales.localeNotify(player, "You're Inventory is full!", true);
                 return false;
             }
             ItemStack backpack = Backpack.createBackpack(type);

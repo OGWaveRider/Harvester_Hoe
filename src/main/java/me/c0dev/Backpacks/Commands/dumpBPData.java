@@ -4,6 +4,7 @@ import me.c0dev.Backpacks.Items.Backpack;
 import me.c0dev.Backpacks.PersistentData.BackPackInformation;
 import me.c0dev.Backpacks.PersistentData.BackPackInformationDataType;
 import me.c0dev.ItemSerialization;
+import me.c0dev.Locales.Locales;
 import me.c0dev.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -23,7 +24,7 @@ public class dumpBPData implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.isOp()) {
-            sender.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "You are not allowed to execute this command!");
+            Locales.localeNotify((Player) sender, "You are not allowed to execute this command!", true);
             return true;
         }
         if (!(sender instanceof Player)) {
@@ -34,37 +35,37 @@ public class dumpBPData implements CommandExecutor {
         PlayerInventory playerInventory = player.getInventory();
         ItemStack item = playerInventory.getItemInMainHand();
         if (item.getType().isAir()) {
-            sender.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "Command must be executed on an item!");
+            Locales.localeNotify(player, "Command must be executed on an item!", true);
             return true;
         }
         ItemMeta itemMeta = item.getItemMeta();
         if (itemMeta == null) {
-            sender.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "Item meta not found!");
+            Locales.localeNotify(player, "ItemMeta not found!", true);
             return true;
         }
         PersistentDataContainer container = itemMeta.getPersistentDataContainer();
         BackPackInformation backPackInformation = container.get(Backpack.uuid, backPackData);
         if (backPackInformation == null) {
-            sender.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "Backpack Information not found!");
+            Locales.localeNotify(player, "Backpack Information not found!", true);
             return true;
         }
-        player.sendMessage("Backpack Type: " + backPackInformation.getType());
+        Locales.localeNotify(player, "Backpack Type: " + backPackInformation.getType(), false);
         if (backPackInformation.getItems().isEmpty()) {
-            player.sendMessage("Backpack contains no items");
+            Locales.localeNotify(player, "Backpack contains no items!", true);
         } else {
             backPackInformation.getItems().forEach((itemSerialized, itemAmount) -> {
                 int i = 0;
                 try {
                     ItemStack itemDeserialized = ItemSerialization.deserializeItem(itemSerialized);
-                    player.sendMessage("Backpack Item #" + i + ": " +  itemDeserialized.toString());
-                    player.sendMessage("Backpack Item Amount #" + i + ": " + itemAmount.toString());
+                    Locales.localeNotify(player, "Backpack Item # " + i + ": " + itemDeserialized.toString(), false);
+                    Locales.localeNotify(player, "Backpack Item Amount # " + i + ": " + itemAmount.toString(), false);
                 } catch (Exception e) {
                     return;
                 }
             });
         }
-        player.sendMessage("Backpack Size: " + backPackInformation.getSize());
-        player.sendMessage("Backpack UUID: " + backPackInformation.getUuid());
+        Locales.localeNotify(player, "Backpack Size: " + backPackInformation.getSize(), false);
+        Locales.localeNotify(player, "Backpack UUID: " + backPackInformation.getUuid(), false);
         return true;
     }
 }
