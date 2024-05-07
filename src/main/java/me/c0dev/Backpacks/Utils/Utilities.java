@@ -4,6 +4,7 @@ import me.c0dev.Backpacks.Items.Backpack;
 import me.c0dev.Backpacks.PersistentData.BackPackInformation;
 import me.c0dev.Backpacks.PersistentData.BackPackInformationDataType;
 import me.c0dev.ItemSerialization;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -18,7 +19,7 @@ public class Utilities {
 
     private static final PersistentDataType<byte[], BackPackInformation> backPackData = new BackPackInformationDataType();
 
-    public static ItemStack getBackpackInInventory(PlayerInventory inventory) {
+    public static ItemStack getBackpackInInventory(Inventory inventory) {
         ItemStack foundBackpack = null;
         for (int itemIdx = 0; itemIdx < inventory.getSize(); itemIdx++) {
             ItemStack item = inventory.getItem(itemIdx);

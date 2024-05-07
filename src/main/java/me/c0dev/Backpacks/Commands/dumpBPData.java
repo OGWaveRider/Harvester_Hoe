@@ -49,7 +49,7 @@ public class dumpBPData implements CommandExecutor {
             return true;
         }
         player.sendMessage("Backpack Type: " + backPackInformation.getType());
-        if (backPackInformation.getItems().size() == 0) {
+        if (backPackInformation.getItems().isEmpty()) {
             player.sendMessage("Backpack contains no items");
         } else {
             backPackInformation.getItems().forEach((itemSerialized, itemAmount) -> {

@@ -5,19 +5,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 public class Menu {
 
     public static Map<Integer, ItemStack> slots = new HashMap<>();
-
     private static int size = 0;
     public static Inventory menuInventory;
-
     public Menu(InventoryType inventoryType, ItemStack filler, String name, String slotSet) {
         this.menuInventory = Bukkit.createInventory(null, inventoryType, name);
         int i = 0;
@@ -28,8 +24,7 @@ public class Menu {
                     slots.put(this.size++, null);
                     break;
                 case '0':
-                    menuInventory.setItem(i++, filler);
-                    slots.put(this.size++, filler);
+                    menuInventory.setItem(this.size++, filler);
                     break;
             }
         }
@@ -56,4 +51,5 @@ public class Menu {
     public static void refreshMenu(Player player) {
         player.updateInventory();
     }
+
 }

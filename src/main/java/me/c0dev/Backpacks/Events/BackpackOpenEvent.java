@@ -6,6 +6,7 @@ import me.c0dev.ItemSerialization;
 import me.c0dev.Main;
 import me.c0dev.Backpacks.PersistentData.BackPackInformationDataType;
 import me.c0dev.Menus.Menu;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
@@ -14,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
@@ -45,7 +47,6 @@ public class BackpackOpenEvent implements Listener {
     private static final PersistentDataType<byte[], BackPackInformation> backPackData = new BackPackInformationDataType();
 
     private static final EnumSet<Action> validActions = EnumSet.of(Action.RIGHT_CLICK_AIR, Action.RIGHT_CLICK_BLOCK);
-    private static final EnumSet<InventoryAction> inventoryActions = EnumSet.of(InventoryAction.PICKUP_ALL, InventoryAction.PICKUP_HALF);
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
         Action action = event.getAction();
@@ -94,7 +95,7 @@ public class BackpackOpenEvent implements Listener {
     @EventHandler
     public void itemHandler(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
-        PlayerInventory playerInventory = player.getInventory();
+        Inventory playerInventory = player.getInventory();
         Inventory inventory = event.getClickedInventory();
         Inventory topInventory = event.getInventory();
 
@@ -172,9 +173,43 @@ public class BackpackOpenEvent implements Listener {
         }
 
         int itemAmount = items.get(itemSerialized);
-        // TODO
-        // On left click (Take all item) try and withdrawl all items
-        // On right click (Take half item) try and withdrawl 64
+        ClickType clickType = event.getClick();
+
+        switch(clickType) {
+            case LEFT:
+                if (playerInventory.firstEmpty() == -1) {
+                    player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "You're Inventory is full!");
+                    return;
+                }
+                for (int i = 0; i < itemAmount; i++) {
+                    if (playerInventory.firstEmpty() == -1) {
+                        break;
+                    }
+                    playerInventory.addItem(itemInSlot.clone());
+                    items.put(itemSerialized, itemAmount--);
+                }
+                Menu.refreshMenu(player);
+                break;
+            case RIGHT:
+                if (playerInventory.firstEmpty() == -1) {
+                    player.sendMessage(ChatColor.DARK_RED + "[!] " + ChatColor.RED + "You're Inventory is full!");
+                    return;
+                }
+                ItemStack itemClone = itemInSlot.clone();
+                int newAmount = 0;
+
+                if (itemAmount < 64) {
+                    itemClone.setAmount(itemAmount);
+                } else {
+                    itemClone.setAmount(64);
+                    newAmount = itemAmount - 64;
+                }
+                playerInventory.addItem(itemClone);
+                items.put(itemSerialized, newAmount);
+                Menu.refreshMenu(player);
+                break;
+        }
+
     }
 
     public void openBackpackMenu(Menu menu, Player player, BackPackInformation backPackInformation, ConcurrentHashMap<String, Integer> items, List<String> lore) {
