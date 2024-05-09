@@ -109,14 +109,13 @@ public class BlockDropItemEvent implements Listener {
             drops.add(drop);
         });
 
-        event.getItems().clear();
-
         ItemStack backpack = Utilities.getBackpackInInventory(playerInventory);
 
         if (backpack != null) {
             ItemMeta backpackMeta = backpack.getItemMeta();
             PersistentDataContainer backpackContainer = backpackMeta.getPersistentDataContainer();
             BackPackInformation backPackInformation = backpackContainer.get(backpack_uuid, backPackData);
+            event.getItems().clear();
             for (ItemStack drop: drops) {
                 String serializedItem = ItemSerialization.serializeItem(drop);
                 int itemAmount = drop.getAmount();
