@@ -31,9 +31,26 @@ public class Menu {
         }
     }
 
-    public void newPartition(ItemStack item) {
-        for (int inventoryIdx = 0; inventoryIdx < menuInventory.getSize(); inventoryIdx++) {
-            ItemStack itemInSlot = menuInventory.getItem(inventoryIdx);
+    public Menu(ItemStack filler, String name, String slotSet) {
+        int i = 0;
+        for (char c : slotSet.toCharArray()) {
+            switch (c) {
+                case '1':
+                    menuInventory.setItem(i++, null);
+                    slots.put(this.size++, null);
+                    break;
+                case '0':
+                    menuInventory.setItem(this.size++, filler);
+                    slots.put(this.size++, filler);
+                    break;
+            }
+        }
+        this.menuInventory = Bukkit.createInventory(null, i, name);
+    }
+
+    public void newPartition(Menu menu, ItemStack item) {
+        for (int inventoryIdx = 0; inventoryIdx < menu.menuInventory.getSize(); inventoryIdx++) {
+            ItemStack itemInSlot = menu.menuInventory.getItem(inventoryIdx);
             if (itemInSlot != null) {
                 continue;
             }

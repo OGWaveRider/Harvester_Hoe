@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import javax.naming.ConfigurationException;
+
 public class commands implements CommandExecutor
 {
     public Main main;
@@ -21,9 +23,14 @@ public class commands implements CommandExecutor
 
             if (player.isOp() || player.hasPermission("givePremiumHarvesterHoe"))
             {
-                ItemStack item = HarvesterHoe.CreateHarvesterHoe();
+                ItemStack item = null;
+                try {
+                    item = HarvesterHoe.createHarvesterHoe();
+                } catch (ConfigurationException e) {
+                    throw new RuntimeException(e);
+                }
                 player.getInventory().addItem(item);
-                player.sendMessage(ChatColor.GREEN + "You have been given a Premium HarvesterHoe");
+                player.sendMessage(ChatColor.GREEN + "You have been given a HarvesterHoe");
             }
             else{
             player.sendMessage(ChatColor.RED + "You do not have the correct permissions!");

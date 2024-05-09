@@ -18,4 +18,27 @@ public class Locales {
         }
         player.sendMessage(colorMain + "[!] " + colorAlt + message);
     }
+    public static String formatCaps(String string) {
+        if (string == null || string.isEmpty()) {
+            return null;
+        }
+
+        StringBuilder result = new StringBuilder();
+        boolean capitalizeNext = true;
+
+        for (char c : string.toCharArray()) {
+            if (Character.isLetter(c)) {
+                if (capitalizeNext) {
+                    result.append(Character.toUpperCase(c));
+                } else {
+                    result.append(Character.toLowerCase(c));
+                }
+                capitalizeNext = false;
+            } else {
+                capitalizeNext = true;
+                result.append(c);
+            }
+        }
+        return result.toString();
+    }
 }

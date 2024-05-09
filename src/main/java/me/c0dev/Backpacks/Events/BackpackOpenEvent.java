@@ -45,7 +45,7 @@ public class BackpackOpenEvent implements Listener {
     private static final FileConfiguration config = plugin.getConfig();
     private static final NamespacedKey uuid = Backpack.uuid;
 
-    private static final PersistentDataType<byte[], BackPackInformation> backPackData = new BackPackInformationDataType();
+    private static final BackPackInformationDataType backPackData = new BackPackInformationDataType();
 
     private static final EnumSet<Action> validActions = EnumSet.of(Action.RIGHT_CLICK_AIR, Action.RIGHT_CLICK_BLOCK);
     @EventHandler
@@ -228,7 +228,7 @@ public class BackpackOpenEvent implements Listener {
 
                 itemClone.setItemMeta(itemMeta);
 
-                menu.newPartition(itemClone);
+                menu.newPartition(menu, itemClone);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

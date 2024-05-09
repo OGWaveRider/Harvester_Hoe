@@ -20,7 +20,7 @@ import org.bukkit.persistence.PersistentDataType;
 public class dumpBPData implements CommandExecutor {
     public Main main;
 
-    private static final PersistentDataType<byte[], BackPackInformation> backPackData = new BackPackInformationDataType();
+    private static final BackPackInformationDataType backPackData = new BackPackInformationDataType();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.isOp()) {

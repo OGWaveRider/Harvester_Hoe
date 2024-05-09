@@ -48,8 +48,8 @@ backpacks:
       type: "CHEST"
       title: "§8Large Backpack" # Title displayed in menu
       item:
-        material: "RED_STAINED_GLASS_PANE"
-        lore:
+        material: "RED_STAINED_GLASS_PANE" # Item displayed in "0" slots
+        lore: # Lore for items in "1" slots
           - ""
           - "§7<amount>/<amountMax>"
           - ""
@@ -65,42 +65,67 @@ backpacks:
 
 
 harvesterhoe:
-  blocks:
-    # Something here? List of Blocks
+  # Example template
+  # Blocks = list of blocks this item effects
+  item:
+    material: "NETHERITE_HOE" #Hoe item
+    name: "Harvester Hoe" # Name of item
+    lore: # Lore displayed on harvesterhoe
+      - ""
+      - "Lore here"
+      - "lore here 2"
+      - ""
+    glow: true # Whether the hoe will glow
+    unbreakable: true # Whether the hoe will break
+  blocks: # Example
+    - wheat
+    - beetroot
+    - carrots
+    - potato
+    - bamboo
+  menu:
+    #type: "CHEST"
+    title: "Upgrade Menu"
+    items:
+      pane: "GRAY_STAINED_GLASS_PANE"
+      upgrade:
+        lore:
+          - ""
+          - "Current Level: <level>"
+          - ""
+          - "Click to upgrade the <type> multiplier!"
+          - "Cost: <cost>"
+          - ""
+          - "Right click to upgrade"
+    partition: "000000000 000111000 000111000 000000000" # In Slots of 9 for each row of a inventory anything greater than 27 doesn't require a 'type'
   upgrades:
     wheat:
-      1: 10
-      2: 20
-      3: 30
-      4: 40
+      levels:
+        1: 30
+        2: 40
+        3: 50
+        4: 60
     carrots:
-      1: 10
-      2: 20
-      3: 30
-      4: 40
-    potatoes:
-      1: 10
-      2: 20
-      3: 30
-      4: 40
+      levels:
+        1: 20
+        2: 30
+        3: 40
+        4: 50
     beetroot:
-      1: 10
-      2: 20
-      3: 30
-      4: 40
+      levels:
+        1: 20
+        2: 30
+        3: 40
+        4: 50
+    potato:
+      levels:
+        1: 20
+        2: 30
+        3: 40
+        4: 50
     bamboo:
-      1: 10
-      2: 20
-      3: 30
-      4: 40
-    sugar_cane:
-      1: 10
-      2: 20
-      3: 30
-      4: 40
-    kelp:
-      1: 10
-      2: 20
-      3: 30
-      4: 40
-
+      levels:
+        1: 20
+        2: 30
+        3: 40
+        4: 50
