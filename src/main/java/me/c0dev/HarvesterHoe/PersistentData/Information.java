@@ -61,7 +61,7 @@ public class Information implements Serializable {
         }
 
         if (this.upgrades.isEmpty()) {
-            return (String) upgradeLevels.get("1");
+            return String.valueOf(upgradeLevels.get("1"));
         }
 
         int currentLevel = this.upgrades.get(upgrade);

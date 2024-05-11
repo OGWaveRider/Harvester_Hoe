@@ -4,6 +4,9 @@ import me.c0dev.Backpacks.Items.Backpack;
 import me.c0dev.Backpacks.PersistentData.BackPackInformation;
 import me.c0dev.Backpacks.PersistentData.BackPackInformationDataType;
 import me.c0dev.ItemSerialization;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -21,8 +24,9 @@ public class Utilities {
 
     public static ItemStack getBackpackInInventory(Inventory inventory) {
         ItemStack foundBackpack = null;
-        for (int itemIdx = 0; itemIdx < inventory.getSize(); itemIdx++) {
-            ItemStack item = inventory.getItem(itemIdx);
+        for (ItemStack item : inventory.getContents()) {
+            System.out.println(item);
+            System.out.println(item.isSimilar(Backpack.BackPack));
             if (item != null && item.isSimilar(Backpack.BackPack)) {
                 ItemMeta itemMeta = item.getItemMeta();
                 if (itemMeta == null) {
@@ -32,11 +36,8 @@ public class Utilities {
                 if (container.has(Backpack.uuid, backPackData)) {
                     BackPackInformation backPackInformation = container.get(Backpack.uuid, backPackData);
 
-                    if (backPackInformation == null) {
-                        continue;
-                    }
-
                     if (backPackInformation.getMaxItems() >= backPackInformation.getItemAmount() && backpackIsFull(item)) {
+                        System.out.println("Found backpack but is full");
                         continue;
                     }
                     foundBackpack = item;
@@ -80,5 +81,10 @@ public class Utilities {
             return backPackInformation.getItems().entrySet().stream().filter(entry -> backpackIsFullItem(entry.getKey(), backpack)).isParallel();
         }
         return false;
+    }
+
+    public static Item itemStackToItem(@NonNull ItemStack itemStack, Location location) {
+        Item item = Objects.requireNonNull(location.getWorld()).dropItem(location, itemStack);
+        return item;
     }
 }

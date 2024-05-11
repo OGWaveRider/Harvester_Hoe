@@ -25,7 +25,11 @@ public class HarvesterHoe {
 
     public static ItemStack HarvesterHoe;
     public static void init() {
-        createHarvesterHoe();
+        try {
+            createHarvesterHoe();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public static Information information = new Information();

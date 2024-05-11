@@ -127,7 +127,7 @@ public class HarvesterHoeOpenMenuEvent implements Listener {
             menu.newPartition(menu, item);
         }
         Inventory gui = menu.menuInventory;
-        player.openInventory(gui)
+        player.openInventory(gui);
     }
 
     public ArrayList<String> modifyLore(List<String> lore, String type, String cost, int level) {

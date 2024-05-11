@@ -12,49 +12,70 @@ import java.util.Map;
 public class Menu {
 
     public static Map<Integer, ItemStack> slots = new HashMap<>();
-    private static int size = 0;
+    private int size = 0;
     public static Inventory menuInventory;
     public Menu(InventoryType inventoryType, ItemStack filler, String name, String slotSet) {
         this.menuInventory = Bukkit.createInventory(null, inventoryType, name);
+
         int i = 0;
         for (char c : slotSet.toCharArray()) {
-            switch (c) {
-                case '1':
-                    menuInventory.setItem(i++, null);
-                    slots.put(this.size++, null);
-                    break;
-                case '0':
-                    menuInventory.setItem(this.size++, filler);
-                    slots.put(this.size++, filler);
-                    break;
+            if (c == ' ') {
+                continue;
             }
+
+            if (i < this.menuInventory.getSize()) {
+                switch (c) {
+                    case '1':
+                        this.menuInventory.setItem(i, null);
+                        slots.put(this.size, null);
+                        break;
+                    case '0':
+                        this.menuInventory.setItem(i, filler);
+                        slots.put(this.size, filler);
+                        break;
+                }
+                ++this.size;
+            }
+
+            ++i;
         }
     }
 
     public Menu(ItemStack filler, String name, String slotSet) {
         int i = 0;
+
         for (char c : slotSet.toCharArray()) {
+            if (c == ' ') {
+                continue;
+            }
+
             switch (c) {
                 case '1':
-                    menuInventory.setItem(i++, null);
-                    slots.put(this.size++, null);
+                    this.slots.put(i, null);
                     break;
                 case '0':
-                    menuInventory.setItem(this.size++, filler);
-                    slots.put(this.size++, filler);
+                    this.slots.put(i, filler);
                     break;
             }
+            ++i;
         }
+
+
         this.menuInventory = Bukkit.createInventory(null, i, name);
+        this.size = i;
+
+        for (int j = 0; j < i; j++) {
+            this.menuInventory.setItem(j, this.slots.get(j));
+            slots.put(j, this.slots.get(j));
+        }
     }
 
     public void newPartition(Menu menu, ItemStack item) {
-        for (int inventoryIdx = 0; inventoryIdx < menu.menuInventory.getSize(); inventoryIdx++) {
-            ItemStack itemInSlot = menu.menuInventory.getItem(inventoryIdx);
-            if (itemInSlot != null) {
-                continue;
+        for (int slot : menu.slots.keySet()) {
+            if (menu.slots.get(slot) == null) {
+                this.setItemStack(slot, item);
+                break;
             }
-            this.setItemStack(inventoryIdx, item);
         }
     }
 
@@ -63,11 +84,17 @@ public class Menu {
     }
 
     public ItemStack setItemStack(int slot, ItemStack item) {
-        return this.slots.put(slot, item);
+        this.slots.put(slot, item);
+        if (this.menuInventory != null) {
+            this.menuInventory.setItem(slot, item);
+        }
+        return item;
     }
 
     public static void refreshMenu(Player player) {
-        player.updateInventory();
+        if (player.getOpenInventory() != null && player.getOpenInventory().getTopInventory().equals(menuInventory)) {
+            player.updateInventory();
+        }
     }
 
 }

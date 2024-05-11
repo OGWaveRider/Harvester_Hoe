@@ -12,12 +12,15 @@ import me.c0dev.Main;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -26,6 +29,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -53,6 +57,24 @@ public class BlockDropItemEvent implements Listener {
             actionableBlocks.add(material);
         }
     }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        Block block = event.getBlock();
+        BlockState blockState = block.getState();
+        Player player = event.getPlayer();
+        Collection<ItemStack> droppedItems = block.getDrops();
+
+        List<Item> items = new ArrayList<>();
+        for (ItemStack itemStack : droppedItems) {
+            Item item = Utilities.itemStackToItem(itemStack, block.getLocation());
+            items.add(item);
+            item.remove();
+        }
+
+        onDropItem(new org.bukkit.event.block.BlockDropItemEvent(block, blockState, player, items));
+    }
+
     @EventHandler
     public void onDropItem(org.bukkit.event.block.BlockDropItemEvent event) {
         Block block = event.getBlock();
@@ -88,10 +110,6 @@ public class BlockDropItemEvent implements Listener {
         }
 
         ConcurrentHashMap<Material, Integer> upgrades = harvesterHoeInformation.getUpgrades();
-
-        if (upgrades.isEmpty()) {
-            return;
-        }
 
         if (!actionableBlocks.contains(blockType)) {
             return;
